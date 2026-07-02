@@ -1,0 +1,126 @@
+﻿FILE: 6逻辑回归与softmax.ppt
+SLIDES: 21
+
+===== Slide 1 =====
+2026-6-27
+1
+机器学习
+第6讲 逻辑回归与softmax
+
+===== Slide 2 =====
+2026-6-27
+2
+提纲
+逻辑回归（logistic regression）Logistic distributionSigmoid函数对数线性模型多项逻辑回归Softmax
+
+===== Slide 3 =====
+2026-6-27
+3
+逻辑回归（logistic regression）
+简介有指导的两类分类问题模型由条件概率分布P(y|x)表示P(y|x)服从logistic distribution可以推广到k（k>2）类分类问题Logistic distribution分布函数：密度函数：
+
+===== Slide 4 =====
+2026-6-27
+4
+Logistic distribution
+若分布函数：密度函数
+
+===== Slide 5 =====
+Sigmoid 函数
+Sigmoid函数：当              时的logistic distribution分布函数；又称为：S形曲线神经网络中常用的（非线性）激活（active）函数之一
+2026-6-27
+5
+
+===== Slide 6 =====
+Sigmoid函数的一些性质
+2026-6-27
+6
+
+===== Slide 7 =====
+Logistic regression model
+逻辑回归模型模型对条件概率P(y=1|x)进行建模并且，P(y=1|x)服从logistic distribution模型为参数化的条件分布：即：
+2026-6-27
+7
+
+===== Slide 8 =====
+Logistic regression model
+判别函数：模型特点：对数线性模型
+2026-6-27
+8
+
+===== Slide 9 =====
+Logistic regression model
+逻辑回归模型中，输出y=1的对数几率是输入x的线性函数故：逻辑回归模型属于对数线性模型对数线性模型还有：最大熵模型等输入x的线性函数值越大（接近于正无穷），概率值P(y=1|x)越大（接近于1）输入x的线性函数值越小（接近于负无穷），概率值P(y=1|x)越小（接近于0）
+2026-6-27
+9
+
+===== Slide 10 =====
+逻辑回归学习问题
+给定训练集参数化逻辑回归模型：训练集上的似然函数：
+2026-6-27
+10
+
+===== Slide 11 =====
+逻辑回归学习问题
+对数似然函数(逻辑回归问题的loss？)：最优化问题：
+2026-6-27
+11
+
+===== Slide 12 =====
+逻辑回归学习算法
+梯度下降（gradient descent）逻辑回归模型：可以看作神经网络中的一个激活函数为sigmoid的神经元；也可以作为深度神经网络的输出层（二分类问题）
+2026-6-27
+12
+
+===== Slide 13 =====
+多项逻辑回归——softmax
+多类分类问题：比如：手写数字识别问题（0-9）二类分类问题的推广（k>2）
+2026-6-27
+13
+
+===== Slide 14 =====
+softmax
+Softmax定义：
+2026-6-27
+14
+
+===== Slide 15 =====
+Softmax
+Softmax的输出
+2026-6-27
+15
+
+===== Slide 16 =====
+softmax
+判别函数：对数似然函数(softmax的loss？)：
+2026-6-27
+16
+
+===== Slide 17 =====
+softmax
+最优化问题：求解算法：梯度下降
+2026-6-27
+17
+
+===== Slide 18 =====
+Softmax参数冗余特性（overparameterized）
+2026-6-27
+18
+
+===== Slide 19 =====
+softmax+ regularization
+优化目标函数：
+2026-6-27
+19
+
+===== Slide 20 =====
+Softmax及逻辑回归的loss
+概率分布的KL距离（Kullback-Leibler Divergence，relative entropy）Softmax估计错误可以表示为：Softmax的概率估计分布和one-hot向量之间的差别；这种差别是一种概率分布之间的差别；
+2026-6-27
+20
+
+===== Slide 21 =====
+多类分类问题
+Softmax模型与k个二类分类器（比如SVM）都可实现多类分类问题k个二类分类器：one vs all！软分类与硬分类软分类：一个实例可以有多个类别，类别之间有交集One vs all硬分类：一个实例有且只能有一个类别；类别之间相互排斥：softmax
+2026-6-27
+21

@@ -1,0 +1,577 @@
+
+
+===== PAGE 1 =====
+信息检索
+Information Retrieval
+第 相关反 及 展
+9讲 馈 查询扩
+Relevance Feedback & Quer y Expansion
+
+
+===== PAGE 2 =====
+提纲
+上一讲回顾
+❶
+动机
+❷
+相关反馈基础
+❸
+相关反馈详细介绍
+❹
+查询扩展
+❺
+2
+
+
+===== PAGE 3 =====
+正确率(Precision)和召回率(Recall)
+§ 正确率(Precision，简写为P) 是返回文档中真正相
+关的比率
+§ 召回率(Recall,R) 是返回结果中的相关文档占所有
+相关文档(包含返回的相关文档和未返回的相关文档)
+的比率
+33
+
+
+===== PAGE 4 =====
+动态摘要
+§ 给出一个或者多个 “窗口”内的结果(snippet) ，
+这些窗口包含了查询词项的多次出现
+§ 出现查询短语的snippet优先
+§ 在一个小窗口内出现查询词项的snippet优先
+§ 最终将所有snippet都显示出来作为摘要
+44
+
+
+===== PAGE 5 =====
+一个动态摘要的例子
+查询: “new guinea economic development” Snippets (加黑标识)
+that were extracted from a document: . . . In recent years, Papua
+New Guinea has faced severe economic difficulties and
+economic growth has slowed, partly as a result of weak governance
+and civil war, and partly as a result of external factors such as the
+Bougainville civil war which led to the closure in 1989 of the
+Panguna mine (at that time the most important foreign exchange
+earner and contributor to Government finances), the Asian
+financial crisis, a decline in the prices of gold and copper, and a fall
+in the production of oil. PNG’s economic development record
+over the past few years is evidence that governance issues
+underly many of the country’s problems. . . .
+55
+
+
+===== PAGE 6 =====
+本讲内容
+§ 交互式相关反馈(Interactive relevance feedback): 在初
+始检索结果的基础上，通过用户交互指定哪些文档相关或
+不相关，然后改进检索的结果
+§ 查询扩展(Quer y expansion): 通过在查询中加入同义或者
+相关的词项来提高检索结果
+§ 相关词项的来源: 人工编辑的同义词词典、自动构造的同义词词典、
+查询日志等等。
+66
+
+
+===== PAGE 7 =====
+提纲
+上一讲回顾
+❶
+动机
+❷
+相关反馈基础
+❸
+相关反馈详细介绍
+❹
+查询扩展
+❺
+7
+
+
+===== PAGE 8 =====
+搜索中提高召回率的方法
+§ 本讲的主题：两种提高召回率的方法—
+§ 相关反馈，及
+§ 查询扩展
+§ 考虑查询q: [aircraft] . . .
+§ 某篇文档 d 包含“plane”, 但是不包含“aircraft”
+§ 显然对于查询q，一个简单的IR系统不会返回文档d，即使d是和q
+最相关的文档
+§ 我们试图改变这种做法：
+§ 也就是说，我们会返回不包含查询词项的相关文档。
+88
+
+
+===== PAGE 9 =====
+关于召回率Recall
+§ 本讲当中会放松召回率的定义，即(在前几页)给用户返回
+更多的相关文档
+§ 这可能实际上会降低正确率，比如，将jaguar扩展为
+jaguar(美洲虎；一种汽车品牌)+panthera(豹属)
+§ 可能会去掉一些相关的文档，但是可能增加前几页返
+回给用户的相关文档数
+99
+
+
+===== PAGE 10 =====
+提高召回率的方法
+§ 局部(local)方法: 对用户查询进行局部的即时的分析
+§ 主要的局部方法: 相关反馈(relevance feedback)
+§ 第一部分
+§ 全局(Global)方法: 进行一次性的全局分析(比如分析整个
+文档集)来产生同/近义词词典 (thesaurus)
+§ 利用该词典进行查询扩展
+§ 第二部分
+1100
+
+
+===== PAGE 11 =====
+提纲
+上一讲回顾
+❶
+动机
+❷
+相关反馈基础
+❸
+相关反馈详细介绍
+❹
+查询扩展
+❺
+11
+
+
+===== PAGE 12 =====
+相关反馈的基本思想
+§ 用户提交一个 ( 简短的 ) 查询
+§ 搜索引擎返回一系列文档
+§ 用户将部分返回文档标记为相关的，将部分文档标记
+为不相关的
+§ 搜索引擎根据标记结果计算得到信息需求的一个新查
+询表示。当然我们希望该表示好于初始的查询表示
+§ 搜索引擎对新查询进行处理，返回新结果
+§ 新结果可望（理想上说）有更高的召回率
+1122
+
+
+===== PAGE 13 =====
+相关反馈分类
+§ 用户相关反馈或显式相关反馈(User Feedback or
+Explicit Feedback): 用户显式参加交互过程
+§ 隐式相关反馈(Implicit Feedback)：系统跟踪用户的行为
+来推测返回文档的相关性，从而进行反馈。
+§ 伪相关反馈或盲相关反馈(Pseudo Feedback or Blind
+Feedback)：没有用户参与，系统直接假设返回文档的前
+k篇是相关的，然后进行反馈。
+13
+
+
+===== PAGE 14 =====
+相关反馈
+§ 相关反馈可以循环若干次
+§ 下面将使用术语ad hoc retrieval来表示那种无相关反
+馈的常规检索
+§ 将介绍三个不同的(用户)相关反馈的例子
+1144
+
+
+===== PAGE 15 =====
+例1
+1155
+
+
+===== PAGE 16 =====
+初始查询的结果
+1166
+
+
+===== PAGE 17 =====
+用户反馈: 选择相关结果
+1177
+
+
+===== PAGE 18 =====
+相关反馈后再次检索的结果
+1188
+
+
+===== PAGE 19 =====
+例2: 一个实际的例子
+初始查询:
+[new space satellite applications] 初始查询的检索结果: (r = rank)
+r
++ 1 0.539 NASA Hasn’t Scrapped Imaging Spectrometer
++ 2 0.533 NASA Scratches Environment Gear From Satellite Plan
+3 0.528 Science Panel Backs NASA Satellite Plan, But Urges Launches of
+Smaller Probes
+4 0.526 A NASA Satellite Project Accomplishes Incredible Feat: Staying
+Within Budget
+5 0.525 Scientist Who Exposed Global Warming Proposes Satellites for
+Climate Research
+6 0.524 Report Provides Support for the Critics Of Using Big Satellites
+to Study Climate
+7 0.516 Arianespace Receives Satellite Launch Pact From Telesat
+Canada
++ 8 0.509 Telecommunications Tale of Two Companies
+用户将一些文档标记为相关 “+”.
+19
+
+
+===== PAGE 20 =====
+基于扩展查询的检索结果
+r
+* 1 0.513 NASA Scratches Environment Gear From Satellite Plan
+* 2 0.500 NASA Hasn’t Scrapped Imaging Spectrometer
+3 0.493 When the Pentagon Launches a Secret Satellite, Space
+Sleuths Do Some Spy Work of Their Own
+4 0.493 NASA Uses ‘Warm’ Superconductors For Fast Circuit
+* 5 0.492 Telecommunications Tale of Two Companies
+6 0.491 Soviets May Adapt Parts of SS-20 Missile For
+Commercial Use
+7 0.490 Gaping Gap: Pentagon Lags in Race To Match the
+Soviets In Rocket Launchers
+8 0.490 Rescue of Satellite By Space Agency To Cost $90 Million
+20
+
+
+===== PAGE 21 =====
+提纲
+上一讲回顾
+❶
+动机
+❷
+相关反馈基础
+❸
+相关反馈详细介绍
+❹
+查询扩展
+❺
+21
+
+
+===== PAGE 22 =====
+相关反馈中的假设
+§ 什么时候相关反馈能否提高召回率？
+§ 假设 A1: 对于某初始查询，用户知道在文档集中使用哪些词项来
+表达
+§ 假设A2: 相关文档中出现的词项类似 (因此，可以基于相关反馈，
+从一篇相关文档跳到另一篇相关文档)
+§ 或者: 所有文档都紧密聚集在某个prototype周围
+§ 或者: 有多个不同的prototype, 但是它们之间的用词具有显著
+的重合率
+§ 相关文档和不相关文档之间的相似度很低
+2222
+
+
+===== PAGE 23 =====
+假设A1不成立的情况
+§ 假设 A1: 对于某初始查询，用户知道在文档集中使用哪
+些词项来表达
+§ 不成立的情况：用户的词汇表和文档集的词汇表不匹配
+§ 例子： cosmonaut / astronaut
+2233
+
+
+===== PAGE 24 =====
+假设A2不成立的情况
+§ 假设A2: 相关文档中出现的词项类似
+§ 假设不成立的查询例子： [contradictor y
+government policies] 互相矛盾的政府政策
+§ 一些相关的文档集合，但是文档集合彼此之间并不相
+似
+§ 文档集合1：烟草种植者的补贴 vs. 禁烟运动
+§ 文档集合2：对发展中国家的帮助 vs. 发展中国家进口商
+品的高关税
+2244
+
+
+===== PAGE 25 =====
+相关反馈的评价
+§ 选择某个评价指标，比如 P@10
+§ 计算原始查询q 检索结果的 P@10 指标 for original query
+0
+§ 计算修改后查询q 检索结果的 P@10 指标
+1
+§ 大部分情况下 q 的检索结果精度会显著高于 q !
+1 0
+2255
+
+
+===== PAGE 26 =====
+相关反馈的评价
+§ 公平的评价过程一定要基于存留文档集 (residual
+用户没有判断的文档集
+collection):
+§ 研究表明，采用这种方式进行评价，相关反馈是比较成
+功的一种方法
+§ 经验而言，一轮相关反馈往往非常有用，相对一轮相关
+反馈，两轮相关反馈效果的提高有限。
+2266
+
+
+===== PAGE 27 =====
+有关评价的提醒
+§ 相关反馈有效性的正确评价，必须要和其他需要花费同
+样时间的方法比较
+§ 相关反馈的一种替代方法 : 用户修改并重新提交新的查
+询
+§ 用户更倾向于修改和重新提交查询而不是判断文档的相
+关性
+2277
+
+
+===== PAGE 28 =====
+课堂练习
+§ 搜索引擎是否使用相关反馈?
+§ 为什么?
+2288
+
+
+===== PAGE 29 =====
+相关反馈存在的问题
+§ 相关反馈开销很大
+§ 相关反馈生成的新查询往往很长
+§ 长查询的处理开销很大
+§ 用户不愿意提供显式的相关反馈
+§ 很难理解，为什么会返回(应用相关反馈之后)某篇特定
+文档
+§ Excite搜索引擎曾经提供完整的相关反馈功能，但是后
+来废弃了这一功能
+2299
+
+
+===== PAGE 30 =====
+隐式相关反馈
+§ 通过观察用户对当前检索结果采取的行为来给出对检
+索结果的相关性判定。
+§ 判定不一定很准确，但是省却了用户的显式参与过程。
+§ 对用户非当前检索行为或非检索相关行为的分析也可
+以用于提高检索的效果，这些是个性化信息检索
+(Personalized IR)的主要研究内容。
+30
+
+
+===== PAGE 31 =====
+用户行为种类
+§ 鼠标键盘动作：
+§ 点击链接、加入收藏夹、拷贝粘贴、停留、翻页等等
+§ 用户眼球动作
+§ Eye tracking可以跟踪用户的眼球动作
+§ 拉近、拉远、瞟、凝视、往某个方向转
+31
+
+
+===== PAGE 32 =====
+点击行为(Click through behavior)
+FIELD VALUE
+User ID 1162742023015
+Time stamp 06/Nov/00:01:35
+Query 肉夹馍排第一的理由
+terms
+URL http://bbs.cixi.cn/dispbbs.asp?Star=4&boardid=46&id=346721&pa
+ge=1
+Page 1
+number
+Rank 7
+Anchor text 你们同意<FONT color=#cc0033>肉夹馍排第一</FONT>吗？[慈溪社区]
+32
+
+
+===== PAGE 33 =====
+眼球动作(通过鼠标轨迹模拟)
+33
+
+
+===== PAGE 34 =====
+关于Eye tracking
+34
+
+
+===== PAGE 35 =====
+隐式相关反馈小结
+§ 优点：
+§ 不需要用户显式参与，减轻用户负担
+§ 用户行为某种程度上反映用户的兴趣，具有可行性
+§ 缺点：
+§ 对行为分析有较高要求
+§ 准确度不一定能保证
+§ 某些情况下需要增加额外设备
+35
+
+
+===== PAGE 36 =====
+伪相关反馈(Pseudo-relevance
+feedback)
+§ 伪相关反馈对于真实相关反馈的人工部分进行自动化
+§ 伪相关反馈算法
+§ 对于用户查询返回有序的检索结果
+§ 假定前 k 篇文档是相关的
+§ 进行相关反馈 (如 Rocchio)
+§ 平均上效果不错
+§ 但是对于某些查询而言可能结果很差
+§ 几次循环之后可能会导致查询漂移(query drift)
+3366
+
+
+===== PAGE 37 =====
+TREC4上的伪相关反馈实验
+§ 使用Cornell大学的SMART系统
+§ 50个查询，每个查询基于前100个结果进行反馈 (因此所有的反
+馈文档数目是5000)：
+检索方法 相关文档数目
+lnc.ltc 3210
+lnc.ltc-PsRF 3634
+Lnu.ltu 3709
+Lnu.ltu-PsRF 4350
+§ 比较了两种长度归一化机制 (L vs. l) 以及反馈不反馈后的结果
+(PsRF).
+§ 实验中的伪相关反馈方法对查询只增加了20个词项 (Rocchio
+将增加更多的词项)
+§ 上述结果表明，伪相关反馈在平均意义上说是有效的方法
+3377
+
+
+===== PAGE 38 =====
+伪相关反馈小结
+§ 优点：
+§ 不用考虑用户的因素，处理简单
+§ 很多实验也取得了较好效果
+§ 缺点：
+§ 没有通过用户判断，所以准确率难以保证
+§ 不是所有的查询都会提高效果
+38
+
+
+===== PAGE 39 =====
+提纲
+上一讲回顾
+❶
+动机
+❷
+相关反馈基础
+❸
+相关反馈详细介绍
+❹
+查询扩展
+❺
+39
+
+
+===== PAGE 40 =====
+查询扩展(Quer y expansion)
+§ 查询扩展是另一种提高召回率的方法
+§ 我们使用 “全局查询扩展” 来指那些 “查询重构
+(quer y reformulation)的全局方法”
+§ 在全局查询扩展中，查询基于一些全局的资源进行修改，
+这些资源是与查询无关的
+§ 主要使用的信息: 同义词或近义词
+§ 同义词或近义词词典(thesaurus)
+§ 两种同(近)义词词典构建方法：人工构建和自动构建
+4400
+
+
+===== PAGE 41 =====
+查询扩展的例子
+4411
+
+
+===== PAGE 42 =====
+用户反馈的类型
+§ 用户对文档提供反馈
+§ 在相关反馈中更普遍
+§ 用户对词或短语提供反馈
+§ 在查询扩展中更普遍
+4422
+
+
+===== PAGE 43 =====
+查询扩展的类型
+§ 人工构建的同(近)义词词典 (人工编辑人员维护的词典，
+如 PubMed)
+§ 自动导出的同(近)义词词典 (比如，基于词语的共现统
+计信息)
+§ 基于查询日志挖掘出的查询等价类 (Web上很普遍，比
+如上面的 “palm” 例子)
+4433
+
+
+===== PAGE 44 =====
+基于同(近)义词词典的查询扩展
+§ 对查询中的每个词项t, 将词典中与t语义相关的词扩充到查
+询中
+§ 例子: HOSPITAL → MEDICAL
+§ 通常会提高召回率
+§ 可能会显著降低正确率，特别是对那些有歧义的词项
+transcript → transcript bioinformatics
+§ 广泛应用于特定领域(如科学、工程领域)的搜索引擎中
+§ 创建并持续维护人工词典的开销非常大
+§ 人工词典和基于受控词汇表(controlled vocabulary)的标记
+的效果大体相当
+4444
+
+
+===== PAGE 45 =====
+基于人工词典的扩展样例: PubMed
+4455
+
+
+===== PAGE 46 =====
+同(近)义词词典的自动构建
+§ 通过分析文档集中的词项分布来自动生成同(近)义词词
+典
+§ 基本的想法是计算词语之间的相似度
+§ 定义 1: 如果两个词各自的上下文共现词类似，那么它
+们类似
+§ “car ” ≈ “motorcycle” ，因为它们都与 “road”、
+“gas” 及 “license”之类的词共现，因此它们类似
+§ 定义 2: 两个词，如果它们同某些一样的词具有某种给
+定的语法关系的话，那么它们类似
+§ 可以harvest, peel, eat, prepare apples 和pears, 因此
+apples 和pears肯定彼此类似
+§ 共现关系更加鲁棒，而语法关系更加精确
+4466
+
+
+===== PAGE 47 =====
+基于共现关系的同(近)义词词典样例
+词语 同(近)义词
+absolutely absurd whatsoever totally exactly nothing
+bottomed dip copper drops topped slide trimmed
+captivating shimmer stunningly superbly plucky witty
+doghouse dog porch crawling beside downstairs
+makeup repellent lotion glossy sunscreen skin gel
+mediating reconciliation negotiate case conciliation
+keeping hoping bring wiping could some would
+lithographs drawings Picasso Dali sculptures Gauguin
+pathogens toxins bacteria organisms bacterial parasite
+senses grasp psyche truly clumsy naive innate
+WordSpace demo on web
+4477
+
+
+===== PAGE 48 =====
+搜索引擎中的查询扩展
+§ 搜索引擎进行查询扩展主要依赖的资源：查询日志
+(query log)
+§ 例 1: 提交查询 [herbs] ( 草药 ) 后，用户常常搜索 [herbal
+草本疗法
+remedies] ( )
+§ → “herbal remedies” 是 “herb”的潜在扩展查询
+§ 例 2: 用户搜索 [flower pix （照片） ] 时常常点击 URL
+，而用户搜索 常
+photobucket.com/flower [flower clipart]
+常点击同样的
+URL
+§ → “flower clipart（剪切画）”和“flower pix” 可能互为扩展
+查询
+4488
+
+
+===== PAGE 49 =====
+本讲小结
+§ 交互式相关反馈(Interactive relevance feedback): 在初
+始检索结果的基础上，通过用户交互指定哪些文档相关或
+不相关，然后改进检索的结果
+§ 查询扩展(Quer y expansion): 通过在查询中加入同义或者
+相关的词项来提高检索结果
+§ 相关词项的来源: 人工编辑的同义词词典、自动构造的同义词词典、
+查询日志等等。
+4499

@@ -1,0 +1,315 @@
+﻿FILE: 4SVM.ppt
+SLIDES: 53
+
+===== Slide 1 =====
+2026-6-27
+1
+机器学习
+第4讲 支持向量机（SVM）
+
+===== Slide 2 =====
+Support Vector Machines(SVM)
+2026-6-27
+2
+
+===== Slide 3 =====
+2026-6-27
+3
+摘要
+间隔（Margin）函数间隔（Functional margin）几何间隔（Geometric margin）最大间隔（max-marjin）分类器-SVMSVM模型Lagrange dualityPrimal problemDual problemKarush-Kuhn-Tucker (KKT) conditions核（Kernel）方法正则化（Regularization）与 线性不可分问题SVM训练算法The SMO algorithm
+
+===== Slide 4 =====
+SVM分类器
+SVM历史原始的SVM分类器由Vapnik等人1963提出；1992年Vapnik等在SVM中引入核方法解决线性不可分问题；目前使用的标准SVM大致采用1995年Vapnik 提出的软间隔(soft margin)分类器；SVM为有指导的机器学习算法主要解决两类分类问题扩展：多类分类问题、回归问题
+2026-6-27
+4
+
+===== Slide 5 =====
+SVM分类器
+SVM定义特征空间上的间隔最大的线性分类器Max-margin是它的本质SVM模型类型——由简到繁线性可分SVM——Hard margin线性SVM——Soft margin非线性SVM——Kernel trick
+2026-6-27
+5
+
+===== Slide 6 =====
+SVM分类器
+SVM的学习问题：给定训练集T，寻找线性超平面将正负实例分离开来感知机：若T线性可分，有无穷过个解SVM不但要求超平面将正负例正确分开，而且要求分割面与正负例间隔最大有唯一最优解具有更好的推广能力
+2026-6-27
+6
+
+===== Slide 7 =====
+SVM学习问题
+输入空间：输出空间：分类模型：w和b为模型的参数w：n维权重向量（weights）b: 偏置（bias）sign为符号函数分类超平面：求解策略：间隔最大！
+2026-6-27
+7
+
+===== Slide 8 =====
+2026-6-27
+8
+间隔Margin
+实例到分割面的距离分割面上的点距离为0；正确分类的实例到分割面的距离越大，分类正确的可信度越高；如何描述这种可信度？margin！
+
+===== Slide 9 =====
+间隔Margin
+在超平面确定的情况下，            代表了点到超平面的距离；           和y的符号一致性代表了分类的正确性；               既可以代表分类正确性又可以代表确信度越大越好！这就是：函数间隔
+2026-6-27
+9
+
+===== Slide 10 =====
+2026-6-27
+10
+函数间隔Functional margin
+T中样本点(xi,yi)关于超平面S的函数间隔：T关于S的函数间隔：特性：函数间隔代表了分类的确信度，值越大确信度越大但函数间隔却可以任意的大！规范化：
+
+===== Slide 11 =====
+2026-6-27
+11
+几何间隔(Geometric margin)
+几何解释A表示xiB为：B on hyperplane：
+
+===== Slide 12 =====
+2026-6-27
+12
+几何间隔(Geometric margin)
+Geometric marginGiven training example: (xi,yi)Given all the training set:
+
+===== Slide 13 =====
+函数间隔和几何间隔关系
+函数间隔和几何间隔之间的关系几何间隔：点到超平面的带符号距离；函数间隔可以任意大，但几何间隔不能；
+2026-6-27
+13
+
+===== Slide 14 =====
+2026-6-27
+14
+线性可分最大间隔分类器
+给定训练集T，max-margin分类器学习问题：转化：
+
+===== Slide 15 =====
+线性可分最大间隔分类器
+函数间隔可以任意扩大和缩小，不改变上述最优化问题的解可让函数间隔为1最优化问题转变为凸二次规划问题：线性可分：有唯一最优解
+2026-6-27
+15
+
+===== Slide 16 =====
+支持向量与间隔边界
+T中距离超平面最近的点称为支持向量；即：H1和H2为间隔边界它们之间的区域为间隔；
+2026-6-27
+16
+
+===== Slide 17 =====
+支持向量
+满足约束等于0的点；分布在间隔边界上；所有支持向量到超平面距离都相同，并且离分类超平面距离最小；数量比T中的实例个数小得多；
+2026-6-27
+17
+
+===== Slide 18 =====
+2026-6-27
+18
+拉格朗日对偶Lagrange duality
+Constrained optimization problemLagrange function (Lagrangian) Solved w and β by:
+
+===== Slide 19 =====
+2026-6-27
+19
+Generalized Lagrangian
+Primal optimization problem with inequality as well as equality constraintsGeneralized Lagrangian
+
+===== Slide 20 =====
+2026-6-27
+20
+Generalized Lagrangian
+Given w, set:If w violates any of the primal constraints, such as                   , then
+
+===== Slide 21 =====
+2026-6-27
+21
+Generalized Lagrangian
+Summarize:Primal optimization problem just be same as:
+
+===== Slide 22 =====
+2026-6-27
+22
+Generalized Lagrangian
+Dual optimization problem
+
+===== Slide 23 =====
+2026-6-27
+23
+Generalized Lagrangian
+Karush-Kuhn-Tucker (KKT) conditions:Under KKT conditions:
+对偶互补条件
+
+===== Slide 24 =====
+2026-6-27
+24
+线性可分SVM对偶算法
+原始最优化问题（带约束优化问题标准形式）：
+
+===== Slide 25 =====
+2026-6-27
+25
+线性可分SVM对偶算法
+Lagrangian函数：对偶问题:L分别对w求偏导，等于0:
+
+===== Slide 26 =====
+2026-6-27
+26
+线性可分SVM对偶算法
+L分别对b求偏导，等于0:带入L:
+
+===== Slide 27 =====
+2026-6-27
+27
+线性可分SVM对偶算法
+线性可分SVM对偶优化问题:得到对偶优化问题的解:
+
+===== Slide 28 =====
+2026-6-27
+28
+线性可分SVM对偶算法
+When predict:The αi’s will all be zero except for the support vectorsNeed to find only the inner products between x and the support vectorsSo be called: support vector machines
+
+===== Slide 29 =====
+线性SVM
+T线性不可分：不是所有的实例函数间隔都大于1；只有个别（少数）的outlier不满足，其他整体上线性可分；不满足条件的样本使用线性超平面分类时将付出一些代价（非负）；但整体上来说，付出的代价应该尽可能小
+2026-6-27
+29
+
+===== Slide 30 =====
+线性SVM
+线性支持向量机（软间隔）最优化问题：
+2026-6-27
+30
+
+===== Slide 31 =====
+线性SVM的对偶算法
+通过拉格朗日对偶Lagrange duality转换为最优化问题：
+2026-6-27
+31
+
+===== Slide 32 =====
+线性SVM
+讨论：
+2026-6-27
+32
+
+===== Slide 33 =====
+线性SVM
+线性SVM等价为使用l2正则化和合页损失（Hinge loss）的最优化问题：
+2026-6-27
+33
+
+===== Slide 34 =====
+非线性SVM
+从线性SVM对偶优化问题可以看出：解与样例的内积有关；除支持向量外，所有a都为0对于线性不可分问题，可以将原始特征空间映射到更高维特征空间，期待在新的特征空间中线性可分
+2026-6-27
+34
+
+===== Slide 35 =====
+非线性SVM
+2026-6-27
+35
+
+===== Slide 36 =====
+非线性SVM
+映射后的新的特征空间内积            计算并不简单：高维，甚至是无穷维！如果能找到一个函数：K计算复杂度小；而且还不必了解新的特征空间的形态和从原始特征空间到新特征空间的映射函数；K就是核函数
+2026-6-27
+36
+
+===== Slide 37 =====
+非线性SVM
+2026-6-27
+37
+
+===== Slide 38 =====
+2026-6-27
+38
+Kernels
+定义
+
+===== Slide 39 =====
+2026-6-27
+39
+Kernels
+Kernel maps from the attributes to the features.For example: linear regression of the price of house r.p.t living area (x)using the features x, x2 and x3 to obtain a cubic functionThe map will be:
+
+===== Slide 40 =====
+2026-6-27
+40
+Kernels
+核方法特点：只显示的定义Kernel，不显示的定义         ；通常K(x,z)计算比较容易，但通过     与       计算K(x,z)比较难；                   可能是极高维甚至是无穷维向量给定K(x,z)，      可能不唯一；
+
+===== Slide 41 =====
+2026-6-27
+41
+Kernels-examples
+1.
+
+===== Slide 42 =====
+2026-6-27
+42
+Kernels-examples
+2.the parameter c controls the relative weighting between the xi (first order) and the xixj (second order) terms.
+
+===== Slide 43 =====
+2026-6-27
+43
+Kernels-examples
+Gaussian kernelIntuition:if φ(x) and φ(z) are close together, then we might expect K(x, z) = φ(x)Tφ(z) to be large.Conversely, if φ(x) and φ(z) are far apart—say nearly orthogonal to each other—then K(x, z) = φ(x)Tφ(z) will be small.
+
+===== Slide 44 =====
+2026-6-27
+44
+Kernels
+Kernel matrix:consider some finite set of m points (not necessarily the training set) {x(1), . . . , x(m)}, and let a square, m-by-m matrix K be defined so that its (i, j)-entry is given by Kij = K(x(i), x(j)).
+
+===== Slide 45 =====
+2026-6-27
+45
+线性不可分解决方案
+How about non-separable case?Mapping data to higher dimensional feature space by kernelsGenerally increasing the likelihood that the data is separableBut can’t guarantee that it always will be separable!
+
+===== Slide 46 =====
+核方法—例
+2026-6-27
+46
+
+===== Slide 47 =====
+2026-6-27
+47
+SMO (sequential minimal optimization) algorithm
+Coordinate ascentNotation:Target:Algorithm:
+
+===== Slide 48 =====
+2026-6-27
+48
+Coordinate ascent
+hold all the variables except for some αi fixed, and reoptimize W with respect to just the parameter αi.When the function W happens to be of such a form that the “argmax” in the inner loop can be performed efficiently (gradient descent or Newton method, etc.), then coordinate ascent can be a fairly efficient algorithm.
+
+===== Slide 49 =====
+2026-6-27
+49
+SMO
+We can’t hold all the variables except for single αi fixed w.p.t the constraint:Because:Solution: update at least two of them simultaneously!
+
+===== Slide 50 =====
+2026-6-27
+50
+SMO
+
+===== Slide 51 =====
+2026-6-27
+51
+SMO
+Main idea of SMOreoptimize W(α1, α2, . . . , αm) with respect to α1 and α2
+
+===== Slide 52 =====
+2026-6-27
+52
+Main idea of SMO-continued
+
+===== Slide 53 =====
+2026-6-27
+53
+Main idea of SMO-continued
+Other issues:One is the choice of the heuristics used to select the next αi, αj to update; the other is how to update b as the SMO algorithm is runTools:Libsvm, svmlightliblinear

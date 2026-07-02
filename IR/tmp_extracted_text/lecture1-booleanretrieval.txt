@@ -1,0 +1,579 @@
+
+
+===== PAGE 1 =====
+信息检索
+Information Retrieval
+布尔检索
+Boolean Retrieval
+1
+
+
+===== PAGE 2 =====
+提纲
+① 信息检索概述
+② 倒排索引
+③ 布尔查询的处理
+2
+
+
+===== PAGE 3 =====
+提纲
+① 信息检索概述
+② 倒排索引
+③ 布尔查询的处理
+3
+
+
+===== PAGE 4 =====
+典型的搜索过程
+Get rid of mice in a
+任务
+politically correct way
+是否转义?
+Info about removing mice
+信息需求
+without killing them
+是否转义?
+自然语言描 How do I trap mice alive?
+述
+是否转义?
+查询 mouse trap
+搜索
+引擎
+查询 结果
+文档集
+重构
+
+
+===== PAGE 5 =====
+信息检索Information Retrieval
+§ Information Retrieval (IR) is finding material (usually
+documents) of an unstructured nature (usually text)
+that satisfies an information need from within large
+collections (usually stored on computers).
+§ 信息检索是从大规模非结构化数据（通常是文本）的集合
+（通常保存在计算机上）中找出满足用户信息需求的资料
+（通常是文档）的过程。
+§ Document –文档
+§ Unstructured – 非结构化
+§ Information need –信息需求
+§ Collection—文档集、语料库
+5
+
+
+===== PAGE 6 =====
+文本检索
+本课程主要关注文本检索（Text Retrieval）
+(1) 文本检索是最早的检索应用，也仍然是目前最主
+要的应用
+(2) 文本检索理论可以用于其他领域
+(3) ……
+6
+
+
+===== PAGE 7 =====
+IR vs 数据库: 结构化 vs 非结构化数据
+§ 结构化数据即指“表”中的数据
+Employee Manager Salary
+Smith Jones 50000
+Chang Smith 60000
+Ivy Smith 50000
+数据库常常支持范围或者精确匹配查询 。e.g.,
+Salary < 60000 AND Manager = Smith.
+7
+
+
+===== PAGE 8 =====
+非结构化数据
+§ 通常指自由文本(free text)
+§ 允许
+§ 关键词加上操作符号的查询
+§ 如 奥运会 AND 游泳
+§ 更复杂的 概念性查询
+§ 找出所有的有关药物滥用(drug abuse)的网页
+§ 经典的检索模型一般都针对自由文本进行处理
+8
+
+
+===== PAGE 9 =====
+半结构化数据
+§ 没有数据是完全无结构的，比如网页就是一种半
+结构化数据
+<title>李甲主页</title>
+<body>…</body> …
+§ 严格来说，即使是文本也是有“语言”结构
+§ 比如主谓宾结构
+9
+
+
+===== PAGE 10 =====
+传统信息检索 vs. 现代信息检索
+§ 传统信息检索主要关注非结构化、半结构化数据
+§ 现代信息检索中也处理结构化数据
+10
+
+
+===== PAGE 11 =====
+非结构化数据(文本) vs. 结构化数据
+(数据库) @ 1996年
+200
+180
+160
+140
+120
+100
+80 Unstructured
+60
+Structured
+40
+20
+0
+Data volume Market Cap
+数据量 市场规模
+11
+
+
+===== PAGE 12 =====
+非结构化数据(文本) vs. 结构化数据
+(数据库) @ 如今
+数据量 市场规模
+12
+
+
+===== PAGE 13 =====
+布尔检索
+§ 针对布尔查询的检索，布尔查询是指利用 AND,
+OR 或者 NOT操作符将词项 连接起来的查询
+§ 信息 AND 检索
+§ 信息 OR 检索
+§ 信息 AND 检索 AND NOT
+§ Google的高级搜索？
+13
+
+
+===== PAGE 14 =====
+提纲
+① 信息检索概述
+② 倒排索引
+③ 布尔查询的处理
+14
+
+
+===== PAGE 15 =====
+一个简单的例子(《莎士比亚全集》)
+不到100万单词，假设每个英文单词平均
+长度为8字节，则整个全集不到10MB
+§ 需求：莎士比亚的哪部剧本包含Brutus及Caesar
+但是不包含Calpurnia？
+§ 将需求表示为布尔表达式： Brutus AND Caesar
+AND NOT Calpurnia。
+15
+
+
+===== PAGE 16 =====
+暴力方法
+§ 暴力方法：
+§ 从头到尾扫描所有剧本，
+§ 对每部剧本判断它是否包含Brutus AND Caesar ，
+§ 同时又不包含Calpurnia
+16
+
+
+===== PAGE 17 =====
+暴力方法
+§ 暴力方法有什么不足?
+§ 速度超慢 (特别是大型文档集)
+§ 处理NOT Calpurnia 并不容易（不到末尾不能停止判断）
+§ 不太容易支持其他操作 (e.g., 寻找靠近countrymen的单词
+Romans)
+§ 不支持检索结果的(灵活)排序 (排序时只返回较好的结果)
+§ 暴力方法的优点？
+§ 实现简单
+§ 很容易支持文档动态变化
+17
+
+
+===== PAGE 18 =====
+词项-文档(term-doc)的关联矩阵
+Antony and Cleopatra Julius Caesar The Tempest Hamlet Othello Macbeth
+Antony 1 1 0 0 0 1
+Brutus 1 1 0 1 0 0
+Caesar 1 1 0 1 1 1
+Calpurnia 0 1 0 0 0 0
+Cleopatra 1 0 0 0 0 0
+mercy 1 0 1 1 1 1
+worser 1 0 1 1 1 0
+若某剧本包含某单
+Brutus AND Caesar BUT NOT
+词，则该位置上为1，
+Calpurnia
+否则为0
+
+
+===== PAGE 19 =====
+关联向量(incidence vectors)
+§ 关联矩阵的每一列(对应一篇文档)都是 0/1向量，
+每个0/1都对应一个词项。
+§ 关联矩阵的每一行(对应一个词项)也可以看成一
+个0/1向量，每个0/1代表该词项在相应文档中的
+出现与否
+§ 给定查询Brutus AND Caesar AND NOT
+Calpurnia
+§ 取出三个词项对应的行向量 ，并对Calpurnia 的行向
+量求反，最后按位进行与操作
+§ 110100 AND 110111 AND 101111 = 100100.
+19
+
+
+===== PAGE 20 =====
+上述查询的结果文档
+§ Antony and Cleopatra, Act III, Scene ii
+§ Agrippa [Aside to DOMITIUS ENOBARBUS]: Why,
+Enobarbus,
+§ When Antony found Julius Caesar dead,
+§ He cried almost to roaring; and he wept
+§ When at Philippi he found Brutus slain.
+§ Hamlet, Act III, Scene ii
+§ Lord Polonius: I did enact Julius Caesar I was killed
+i' the
+§ Capitol; Brutus killed me.
+20
+
+
+===== PAGE 21 =====
+IR中的基本假设
+§ 文档集Collection: 由固定数目的文档组成
+§ 目标: 返回与用户需求相关的文档并辅助用户来完
+成某项任务
+§ 相关性Relevance
+§ 主观的概念
+§ 反映对象的匹配程度
+§ 不同应用相关性不同
+21
+
+
+===== PAGE 22 =====
+典型的搜索过程
+Get rid of mice in a
+任务
+politically correct way
+是否转义?
+Info about removing mice
+信息需求
+without killing them
+是否转义?
+自然语言描 How do I trap mice alive?
+述
+是否转义?
+查询 mouse trap
+搜索
+引擎
+查询 结果
+文档集
+重构
+
+
+===== PAGE 23 =====
+检索效果的评价
+§ 正确率(Precision) : 返回结果文档中正确的比例。如返回
+80篇文档，其中20篇相关，正确率1/4
+§ 召回率(Recall) : 全部相关文档中被返回的比例，如返回
+80篇文档，其中20篇相关，但是总的应该相关的文档是
+100篇，召回率1/5
+§ 正确率和召回率反映检索效果的两个方面，缺一不可。
+§ 全部返回，正确率低，召回率100%
+§ 只返回一个非常可靠的结果，正确率100%，召回率低
+§ 将在后面介绍(有兴趣的可以先看)
+23
+
+
+===== PAGE 24 =====
+更大的文档集
+§ 假定N = 1 百万篇文档(1M), 每篇有1000个词(1K)
+§ 假定每个词平均有6个字节(包括空格和标点符号)
+§ 那么所有文档将约占6GB 空间.
+§ 假定 词汇表的大小(即词项个数) 是500K
+Antony and Cleopatra Julius Caesar The Tempest Hamlet Othello Macbeth
+Antony 1 1 0 0 0 1
+Brutus 1 1 0 1 0 0
+Caesar 1 1 0 1 1 1
+Calpurnia 0 1 0 0 0 0
+Cleopatra 1 0 0 0 0 0
+mercy 1 0 1 1 1 1
+worser 1 0 1 1 1 0
+24
+
+
+===== PAGE 25 =====
+词项-文档矩阵将非常大
+§ 矩阵大小为 500K x 1M=500G
+§ 但是该矩阵中最多有10亿(1G)个1
+§ 词项-文档矩阵高度稀疏(sparse). Why?
+§ 稀疏矩阵
+§ 应该有更好的表示方式
+§ 比如我们仅仅记录所有1的位置
+25
+
+
+===== PAGE 26 =====
+倒排索引(Inver ted index)
+§ 对每个词项t, 记录所有包含t的文档列表.
+§ 每篇文档用一个唯一的 docID来表示，通常是正整数，
+如1,2,3…
+§ 能否采用定长数组的方式来存储docID列表
+Brutus 1 2 4 11 31 45 173 174
+Caesar 1 2 4 5 6 16 57 132
+Calpurnia 2 31 54 101
+文档14中加入单词Caesar时该如何处理?
+26
+
+
+===== PAGE 27 =====
+倒排索引(续)
+§ 通常采用变长表方式
+§ 磁盘上，顺序存储方式比较好，便于快速读取
+§ 内存中，采用链表或者可变长数组方式 倒排记录
+§ 存储空间/易插入之间需要平衡
+Posting
+Brutus 1 2 4 11 31 45 173 174
+Caesar 1 2 4 5 6 16 57 132
+Calpurnia 2 31 54 101
+倒排(记录)表
+Postings
+Dictionary
+按docID排序 (原因后面再讲)
+词典 27
+
+
+===== PAGE 28 =====
+倒排索引构建
+待索引文档
+Friends, Romans, countr ymen.
+Tokeni z er 词条化工具
+词条流 Friends Romans Countr ymen
+More on Linguistic
+语言分析工具
+these later.
+modules
+friend roman countr yman
+修改后的词条
+Indexer 2 4
+friend
+1 2
+roman
+倒排索引
+13 16
+countryman
+
+
+===== PAGE 29 =====
+索引构建过程: 词条序列
+§ <词条，docID>二元组
+Doc 1 Doc 2
+I did enact Julius So let it be with
+Caesar I was killed Caesar. The noble
+i' the Capitol; Brutus hath told you
+Brutus killed me. Caesar was ambitious
+
+
+===== PAGE 30 =====
+索引构建过程: 排序
+§ 按词项排序
+索引构建的核心步骤
+
+
+===== PAGE 31 =====
+索引构建过程: 词典 & 倒排记录表
+§ 某个词项在单篇文
+档中的多次出现会
+被合并
+§ 拆分成词典和倒排
+记录表两部分
+§ 每个词项出现的文
+档数目(doc.
+frequency, DF)会
+被加入
+为什么加入？后面会讲
+
+
+===== PAGE 32 =====
+存储开销计算
+docID
+表
+词项及
+文档频
+后续章节:
+率
+•如何快速构建索引?
+•如何减少存储开销?
+指针
+32
+
+
+===== PAGE 33 =====
+提纲
+① 信息检索概述
+② 倒排索引
+③ 布尔查询的处理
+33
+
+
+===== PAGE 34 =====
+假定索引已经构建好
+§ 如何利用该索引来处理查询? 今天主
+要内容
+§ 后面会讲 – 如何处理不同类型的查询? 比如带通配符的
+查询 “信息*检索”
+34
+
+
+===== PAGE 35 =====
+AND查询的处理
+§ 考虑如下查询（从简单的布尔表达式入手）:
+§ Brutus AND Caesar
+§ 在词典中定位 Brutus
+§ 返回对应倒排记录表(对应的docID)
+§ 在词典中定位Caesar
+§ 再返回对应倒排记录表
+§ 合并(Merge)两个倒排记录表，即求交集
+2 4 8 16 32 64 128 Brutus
+Caesar
+1 2 3 5 8 13 21 34
+35
+
+
+===== PAGE 36 =====
+合并过程
+§ 每个倒排记录表都有一个定位指针，两个指针同
+时从前往后扫描, 每次比较当前指针对应倒排记录，
+然后移动某个或两个指针。合并时间为两个表长
+之和的线性时间
+22 44 88 1166 3322 6644 112288 Brutus
+2 8
+Caesar
+11 22 33 55 88 1133 2211 3344
+假定表长分别为x 和y, 那么上述合并算法的复杂度为 O(x+y)
+关键原因: 倒排记录表按照docID排序
+36
+
+
+===== PAGE 37 =====
+上述合并算法的伪代码描述
+37
+
+
+===== PAGE 38 =====
+其它布尔查询的处理
+§ OR表达式：Brutus OR Caesar
+§ 两个倒排记录表的并集
+§ NOT表达式： Brutus AND NOT Caesar
+§ 两个倒排记录表的减
+§ 一般的布尔表达式
+§ (Brutus OR Caesar) AND NOT (Antony OR
+Cleopatra)
+§ 查询处理的效率问题！
+38
+
+
+===== PAGE 39 =====
+查询优化
+§ 查询处理中是否存在处理的顺序问题？
+§ 考虑n 个词项的 AND
+§ 对每个词项，取出其倒排记录表，然后两两合并
+Brutus 2 4 8 16 32 64 128
+Caesar 1 2 3 5 8 16 21 34
+Calpurnia 13 16
+查询: Brutus AND Caesar AND Calpurnia
+39
+
+
+===== PAGE 40 =====
+查询优化
+§ 按照表从小到大(即df从小到大)的顺序进行处理:
+§ 每次从最小的开始合并
+这是为什么保存
+df的原因之一
+Brutus 2 4 8 16 32 64 128
+Caesar 1 2 3 5 8 16 21 34
+Calpurnia 13 16
+相当于处理查询 (Calpurnia AND Brutus) AND Caesar.
+40
+
+
+===== PAGE 41 =====
+更通用的优化策略
+§ e.g., (madding OR crowd) AND (ignoble OR
+strife)
+§ 每个布尔表达式都能转换成上述形式(合取范式)
+§ 获得每个词项的df
+§ (保守)通过将词项的df相加，估计每个OR表达式
+对应的倒排记录表的大小
+§ 按照上述估计从小到大依次处理每个OR表达式
+41
+
+
+===== PAGE 42 =====
+布尔检索的优点
+§ 构建简单，或许是构建IR系统的一种最简单方式
+§ 在30多年中是最主要的检索工具
+§ 当前许多搜索系统仍然使用布尔检索模型:
+§ 电子邮件、文献编目、Mac OS X Spotlight工具
+42
+
+
+===== PAGE 43 =====
+布尔检索例子: WestLaw
+http://www.westlaw.com/
+§ (付费用户数目)最大的商业化法律搜索服务引擎
+(1975年开始提供服务; 1992年加入排序功能)
+§ 几十T数据，700,000用户
+§ 大部分用户仍然使用布尔查询
+§ 查询的例子:
+§ 有关对政府侵权行为进行索赔的诉讼时效(What is the
+statute of limitations in cases involving the
+federal tort claims act?）
+§ LIMIT! /3 STATUTE ACTION /S FEDERAL /2 TORT
+/3 CLAIM
+§ /3 = within 3 words, /S = in same sentence
+43
+
+
+===== PAGE 44 =====
+布尔检索例子: WestLaw
+http://www.westlaw.com/
+§ 另一个例子:
+§ 残疾人士能够进入工作场所的要求（Requirements
+for disabled people to be able to access a
+workplace）
+§ disabl! /p access! /s work-site work-place
+(employment /3 place
+§ 扩展的布尔操作符
+§ 很多专业人士喜欢使用布尔搜索
+§ 非常清楚想要查什么、能得到什么
+§ 但是这并不意味着布尔搜索其实际效果就很好….
+
+
+===== PAGE 45 =====
+Google支持布尔查询
+§ 想查关于好声音比赛的新闻，用布尔表达式怎么
+构造查询？
+§ (去年) AND (好声音 OR 中国好声音) AND (6进
+5 OR 六进五 OR 六 AND 进 AND 五)
+§ 表达式相当复杂，构造困难！
+§ 不严格的话结果过多，而且很多不相关；非常严
+格的话结果会很少，漏掉很多结果。
+45
+
+
+===== PAGE 46 =====
+布尔检索的缺点
+§ 布尔查询构建复杂，不适合普通用户。构建不当，
+检索结果过多或者过少
+§ 没有充分利用词项的频率信息
+§ 1 vs. 0 次出现
+§ 2 vs. 1次出现
+§ 3 vs. 2次出现, …
+§ 通常出现的越多越好，需要利用词项在文档中的词项
+频率(term frequency, tf )信息
+§ 不能对检索结果进行排序
+46

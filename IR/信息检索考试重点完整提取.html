@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>信息检索考试重点完整提取.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E8%80%83%E8%AF%95%E9%87%8D%E7%82%B9%E5%AE%8C%E6%95%B4%E6%8F%90%E5%8F%96">信息检索考试重点完整提取</h1>
+<blockquote>
+<p>根据目录下 4 张考试重点图片，从课程 PDF 中抽取并整理。<br>
+主要来源：lecture1, lecture4, lecture5, lecture6, lecture8, lecture9, lecture10, lecture11, lecture12。<code>lecture0-12.pdf</code> 是合集，内容与单章讲义重复，因此优先按单章页码标注。</p>
+</blockquote>
+<hr>
+<h2 id="1-%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%E4%B8%8E%E5%B8%83%E5%B0%94%E6%A3%80%E7%B4%A2">1. 倒排索引与布尔检索</h2>
+<h3 id="11-%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%E7%9A%84%E6%9E%84%E5%BB%BA">1.1 倒排索引的构建</h3>
+<p>来源：<code>lecture1-booleanretrieval.pdf</code> pp.26-32；<code>lecture4-indexconstruction.pdf</code> pp.20-26</p>
+<p>倒排索引（inverted index）的核心思想：对每个词项 <code>t</code>，保存所有包含该词项的文档列表。每篇文档用唯一的 <code>docID</code> 表示，通常是正整数。</p>
+<p>基本结构：</p>
+<pre class="hljs"><code><div>词典 Dictionary:
+  term -&gt; df, pointer
+
+倒排记录表 Postings list:
+  term -&gt; docID list
+</div></code></pre>
+<p>其中：</p>
+<ul>
+<li><code>term</code>：词项。</li>
+<li><code>df</code>：document frequency，包含该词项的文档数。</li>
+<li><code>pointer</code>：指向该词项倒排记录表的位置。</li>
+<li>postings list：按照 <code>docID</code> 从小到大排序的文档编号列表。</li>
+</ul>
+<p>构建流程：</p>
+<ol>
+<li>文档输入。</li>
+<li>词条化（tokenization），把文档切成词条流。</li>
+<li>语言分析与归一化，例如大小写统一、词干还原、词形归并等。</li>
+<li>生成 <code>&lt;term, docID&gt;</code> 二元组。</li>
+<li>按 <code>term</code> 排序；同一个 <code>term</code> 下再按 <code>docID</code> 排序。</li>
+<li>合并同一篇文档中重复出现的词项。</li>
+<li>拆成词典和倒排记录表两部分，并记录每个词项的 <code>df</code>。</li>
+</ol>
+<p>示意：</p>
+<pre class="hljs"><code><div>Doc 1: I did enact Julius Caesar
+Doc 2: So let it be with Caesar
+
+生成二元组:
+&lt;i,1&gt;, &lt;did,1&gt;, &lt;caesar,1&gt;, &lt;so,2&gt;, &lt;caesar,2&gt;
+
+排序合并:
+caesar -&gt; [1,2]
+did    -&gt; [1]
+i      -&gt; [1]
+so     -&gt; [2]
+</div></code></pre>
+<p>为什么倒排记录表按 <code>docID</code> 排序：</p>
+<ul>
+<li>便于快速求交集、并集和差集。</li>
+<li>布尔查询中的合并可以线性完成。</li>
+<li>便于后续使用 docID 间隔压缩。</li>
+</ul>
+<h3 id="12-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E5%80%92%E6%8E%92%E8%AE%B0%E5%BD%95%E8%A1%A8%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">1.2 合并两个倒排记录表的时间复杂度</h3>
+<p>来源：<code>lecture1-booleanretrieval.pdf</code> pp.35-37</p>
+<p>以 <code>Brutus AND Caesar</code> 为例：</p>
+<ol>
+<li>在词典中定位 <code>Brutus</code>，取出对应 postings list。</li>
+<li>在词典中定位 <code>Caesar</code>，取出对应 postings list。</li>
+<li>合并两个 postings list，即求交集。</li>
+</ol>
+<p>合并方法：双指针扫描。</p>
+<pre class="hljs"><code><div>p1 指向表 A 当前元素
+p2 指向表 B 当前元素
+
+若 A[p1] == B[p2]：输出该 docID，两个指针都后移
+若 A[p1] &lt; B[p2]：p1 后移
+若 A[p1] &gt; B[p2]：p2 后移
+</div></code></pre>
+<p>若两个倒排记录表长度分别为 <code>x</code> 和 <code>y</code>，则复杂度为：</p>
+<pre class="hljs"><code><div>O(x + y)
+</div></code></pre>
+<p>原因：两个指针都只从前到后移动，每个倒排记录最多被访问一次。</p>
+<h3 id="13-%E5%B8%83%E5%B0%94%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96">1.3 布尔查询优化</h3>
+<p>来源：<code>lecture1-booleanretrieval.pdf</code> pp.38-41</p>
+<p>布尔查询包括：</p>
+<ul>
+<li><code>AND</code>：求交集。</li>
+<li><code>OR</code>：求并集。</li>
+<li><code>NOT</code>：求差集，例如 <code>Brutus AND NOT Caesar</code>。</li>
+<li>一般布尔表达式，例如 <code>(Brutus OR Caesar) AND NOT (Antony OR Cleopatra)</code>。</li>
+</ul>
+<p>多个 <code>AND</code> 条件时，处理顺序会影响效率。</p>
+<p>优化原则：</p>
+<pre class="hljs"><code><div>优先合并最短的倒排记录表，即 df 最小的词项先处理。
+</div></code></pre>
+<p>例：</p>
+<pre class="hljs"><code><div>Brutus     -&gt; 7 个 docID
+Caesar     -&gt; 8 个 docID
+Calpurnia  -&gt; 2 个 docID
+
+查询:
+Brutus AND Caesar AND Calpurnia
+
+优化处理:
+(Calpurnia AND Brutus) AND Caesar
+</div></code></pre>
+<p>这样可以尽早得到较小的中间结果，减少后续合并成本。</p>
+<p>更一般的优化策略：</p>
+<p>对于 <code>(madding OR crowd) AND (ignoble OR strife)</code> 这类查询：</p>
+<ol>
+<li>获取每个词项的 <code>df</code>。</li>
+<li>对每个 <code>OR</code> 子表达式，用其中词项 <code>df</code> 之和保守估计结果规模。</li>
+<li>按估计规模从小到大处理各个子表达式。</li>
+</ol>
+<h3 id="14-%E5%9F%BA%E4%BA%8E-mapreduce-%E7%9A%84%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BA">1.4 基于 MapReduce 的索引构建</h3>
+<p>来源：<code>lecture4-indexconstruction.pdf</code> pp.28-36</p>
+<p>大规模 Web 数据不能靠单机完成索引构建，必须使用分布式计算集群。MapReduce 是一种鲁棒、简单的分布式计算框架，Google 的索引构建系统中多个步骤都采用 MapReduce 实现。</p>
+<p>分布式索引构建基本角色：</p>
+<ul>
+<li><code>Master</code>：主节点，负责任务分配和调度。</li>
+<li><code>Parser</code>：分析器，读取文档并输出 <code>(term, docID)</code>。</li>
+<li><code>Inverter</code>：倒排器，收集某一词项分区的所有 <code>(term, docID)</code>，排序并写入倒排记录表。</li>
+</ul>
+<p>流程：</p>
+<ol>
+<li>将输入文档集切成多个 split，每个 split 是文档子集。</li>
+<li>Master 将 split 分配给空闲 Parser。</li>
+<li>Parser 逐篇读取文档，输出 <code>(term, docID)</code> 对。</li>
+<li>Parser 按词项分区，例如 <code>a-f</code>, <code>g-p</code>, <code>q-z</code>。</li>
+<li>Inverter 收集对应分区的所有 <code>(term, docID)</code>。</li>
+<li>Inverter 排序并生成倒排记录表。</li>
+</ol>
+<p>MapReduce 表达：</p>
+<pre class="hljs"><code><div>Map:
+  输入文档 d
+  输出 &lt;term, docID&gt;
+
+Shuffle:
+  按 term 分组，把相同 term 的记录送到同一 Reduce
+
+Reduce:
+  输入 &lt;term, list(docID)&gt;
+  输出 &lt;term, postings list&gt;
+</div></code></pre>
+<p>课件例子：</p>
+<pre class="hljs"><code><div>Map:
+d2: C died
+  -&gt; &lt;C,d2&gt;, &lt;died,d2&gt;
+d1: C came, C c'ed
+  -&gt; &lt;C,d1&gt;, &lt;came,d1&gt;, &lt;C,d1&gt;, &lt;c'ed,d1&gt;
+
+Reduce:
+&lt;C, (d2,d1,d1)&gt; -&gt; &lt;C, (d1:2, d2:1)&gt;
+&lt;died, (d2)&gt;    -&gt; &lt;died, (d2:1)&gt;
+&lt;came, (d1)&gt;    -&gt; &lt;came, (d1:1)&gt;
+</div></code></pre>
+<hr>
+<h2 id="2-%E7%B4%A2%E5%BC%95%E5%8E%8B%E7%BC%A9">2. 索引压缩</h2>
+<h3 id="21-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8E%8B%E7%BC%A9">2.1 为什么要压缩</h3>
+<p>来源：<code>lecture5-indexcompression(1).pdf</code> pp.9-12</p>
+<p>一般意义上的压缩：用短编码串代替长编码串。</p>
+<p>IR 中压缩的动机：</p>
+<ul>
+<li>减少磁盘空间，节省存储开销。</li>
+<li>增加内存中可存储的索引内容，从而加快检索速度。</li>
+<li>加快从磁盘到内存的数据传输速度。</li>
+<li>在解压速度足够快的前提下，“读压缩数据到内存 + 内存中解压”通常比直接读未压缩数据更快。</li>
+</ul>
+<p>IR 中主要压缩对象：</p>
+<ol>
+<li>词典压缩：目标是尽量让词典放入内存。</li>
+<li>倒排记录表压缩：目标是减少磁盘空间和读取时间。倒排记录表通常远大于词典，至少大 10 倍以上。</li>
+</ol>
+<p>压缩类型：</p>
+<ul>
+<li>有损压缩：丢弃一些信息，例如统一小写、去除停用词、词干还原、去掉数字。</li>
+<li>无损压缩：保留所有信息。索引压缩通常使用无损压缩。</li>
+</ul>
+<h3 id="22-%E8%AF%8D%E5%85%B8%E5%8E%8B%E7%BC%A9%E5%8D%95%E4%B8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%98%E5%82%A8">2.2 词典压缩：单一字符串存储</h3>
+<p>来源：<code>lecture5-indexcompression(1).pdf</code> pp.18-21</p>
+<p>定长数组存储词典的缺点：</p>
+<ul>
+<li>对每个词项分配固定长度，短词会浪费空间。</li>
+<li>不能处理超过固定长度的长词。</li>
+<li>英语词项平均长度约为 8 字节，但定长方式可能给每个词项分配 20 字节。</li>
+</ul>
+<p>单一字符串方式：把整部词典看成一个连续字符串。</p>
+<p>每个词项只需保存：</p>
+<ul>
+<li>文档频率 <code>df</code>：4 字节。</li>
+<li>指向倒排记录表的指针：4 字节。</li>
+<li>指向词典字符串中该词项起始位置的指针：约 3 字节。</li>
+<li>词项字符串本身：平均约 8 字节。</li>
+</ul>
+<p>Reuters RCV1 课件估算：</p>
+<pre class="hljs"><code><div>定长方式:
+(20 + 4 + 4) * 400,000 = 11.2 MB
+
+单一字符串方式:
+400,000 * (4 + 4 + 3 + 8) = 7.6 MB
+</div></code></pre>
+<p>优点：明显降低词典空间开销。</p>
+<h3 id="23-%E8%AF%8D%E5%85%B8%E5%8E%8B%E7%BC%A9%E5%8D%95%E4%B8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E5%BC%8F%E4%B8%8B%E6%8C%89%E5%9D%97%E5%AD%98%E5%82%A8">2.3 词典压缩：单一字符串方式下按块存储</h3>
+<p>来源：<code>lecture5-indexcompression(1).pdf</code> pp.22-26</p>
+<p>进一步压缩思路：不是给每个词项都保存一个字符串指针，而是按块保存。</p>
+<p>例如每 4 个词项一块：</p>
+<ul>
+<li>每块只保留 1 个指向字符串起始位置的指针。</li>
+<li>块内每个词项保存长度。</li>
+<li>查询时先二分定位到块，再在块内顺序扫描。</li>
+</ul>
+<p>课件空间估算：</p>
+<pre class="hljs"><code><div>不按块:
+每 4 个词项需要 4 * 3 = 12B 指针
+
+按块:
+每 4 个词项需要 3B 块地址 + 4B 长度 = 7B
+
+每 4 个词项节省:
+12B - 7B = 5B
+
+词典空间:
+从 7.6MB 压缩到约 7.1MB
+</div></code></pre>
+<p>代价：查询稍慢。因为先二分查找块，再在块内线性查找。课件例子中块大小为 4 时，平均查找步数从约 1.6 步增加到 2 步。</p>
+<h3 id="24-%E8%AF%8D%E5%85%B8%E5%8E%8B%E7%BC%A9%E5%89%8D%E7%AB%AF%E7%BC%96%E7%A0%81">2.4 词典压缩：前端编码</h3>
+<p>来源：<code>lecture5-indexcompression(1).pdf</code> p.27</p>
+<p>前端编码（front coding）利用排序后相邻词项常有公共前缀这一特点。</p>
+<p>例：</p>
+<pre class="hljs"><code><div>automata
+automate
+automatic
+automation
+</div></code></pre>
+<p>它们共享前缀 <code>automat</code>，可以编码为：</p>
+<pre class="hljs"><code><div>automat* a
+         e
+         ic
+         ion
+</div></code></pre>
+<p>课件表示中，用 <code>*</code> 标记公共前缀结束，用特殊符号表示后续词项继承此前缀。</p>
+<p>适用场景：</p>
+<ul>
+<li>词典已经按字典序排序。</li>
+<li>相邻词项具有较长公共前缀。</li>
+</ul>
+<p>优点：进一步压缩词典字符串。</p>
+<h3 id="25-%E5%80%92%E6%8E%92%E8%AE%B0%E5%BD%95%E8%A1%A8%E5%8E%8B%E7%BC%A9%E5%AF%B9-docid-%E9%97%B4%E9%9A%94%E7%BC%96%E7%A0%81">2.5 倒排记录表压缩：对 docID 间隔编码</h3>
+<p>来源：<code>lecture5-indexcompression(1).pdf</code> pp.30-33</p>
+<p>倒排记录表压缩的关键：不直接存储 docID，而是存储相邻 docID 的间隔（gap）。</p>
+<p>因为每个倒排记录表中的 docID 按从小到大排序，所以可以做差分。</p>
+<p>例：</p>
+<pre class="hljs"><code><div>原 docID:
+[283154, 283159, 283202]
+
+间隔编码:
+[283154, 5, 43]
+</div></code></pre>
+<p>另一个简单例子：</p>
+<pre class="hljs"><code><div>原 docID:
+[1, 5, 8, 20, 25]
+
+gap:
+[1, 4, 3, 12, 5]
+</div></code></pre>
+<p>为什么有效：</p>
+<ul>
+<li>高频词项的 postings list 很长，docID 间隔通常较小。</li>
+<li>小整数可以用更短编码表示。</li>
+<li>可变长编码对小 gap 用短编码，对大 gap 用长编码。</li>
+</ul>
+<p>目标：</p>
+<ul>
+<li>对罕见词项，较大的 gap 仍可使用较多比特。</li>
+<li>对高频词项，小 gap 只用很少比特。</li>
+<li>压缩后每个 docID 使用的平均位数远小于普通定长整数。</li>
+</ul>
+<hr>
+<h2 id="3-jaccard%E5%AF%B9%E6%95%B0%E8%AF%8D%E9%A2%91idf-%E4%B8%8E-tf-idf">3. Jaccard、对数词频、IDF 与 TF-IDF</h2>
+<h3 id="31-jaccard-%E7%B3%BB%E6%95%B0">3.1 Jaccard 系数</h3>
+<p>来源：<code>lecture6-tfidf.pdf</code> pp.15-17</p>
+<p>Jaccard 系数是计算两个集合重合度的常用方法。</p>
+<p>公式：</p>
+<pre class="hljs"><code><div>Jaccard(A, B) = |A ∩ B| / |A ∪ B|
+</div></code></pre>
+<p>性质：</p>
+<ul>
+<li><code>Jaccard(A, A) = 1</code></li>
+<li>如果 <code>A ∩ B</code> 为空，则 <code>Jaccard(A, B) = 0</code></li>
+<li>取值范围 <code>[0, 1]</code></li>
+<li>两个集合不需要同样大小</li>
+</ul>
+<p>课件例子：</p>
+<pre class="hljs"><code><div>查询 q: &quot;ides of March&quot;
+文档 d: &quot;Caesar died in March&quot;
+
+A = {ides, of, March}
+B = {Caesar, died, in, March}
+
+A ∩ B = {March}，大小为 1
+A ∪ B = {ides, of, March, Caesar, died, in}，大小为 6
+
+Jaccard(q, d) = 1 / 6
+</div></code></pre>
+<p>不足：</p>
+<ul>
+<li>不考虑词项频率，即词项在文档中出现多少次。</li>
+<li>不考虑罕见词比高频词信息量更大。</li>
+<li>没有充分处理文档长度因素。</li>
+</ul>
+<h3 id="32-%E5%AF%B9%E6%95%B0%E8%AF%8D%E9%A2%91">3.2 对数词频</h3>
+<p>来源：<code>lecture6-tfidf.pdf</code> pp.23-24</p>
+<p>词项频率 <code>tf(t,d)</code>：词项 <code>t</code> 在文档 <code>d</code> 中出现的次数。</p>
+<p>原始 tf 的问题：</p>
+<ul>
+<li>如果某词在 A 文档出现 10 次，在 B 文档出现 1 次，A 通常更相关。</li>
+<li>但相关度不应简单认为 A 是 B 的 10 倍。</li>
+<li>相关度不会与 tf 成正比增长。</li>
+</ul>
+<p>对数词频权重：</p>
+<pre class="hljs"><code><div>若 tf(t,d) &gt; 0:
+  w(t,d) = 1 + log10(tf(t,d))
+
+若 tf(t,d) = 0:
+  w(t,d) = 0
+</div></code></pre>
+<p>例：</p>
+<pre class="hljs"><code><div>tf = 0    -&gt; w = 0
+tf = 1    -&gt; w = 1
+tf = 2    -&gt; w ≈ 1.3
+tf = 10   -&gt; w = 2
+tf = 1000 -&gt; w = 4
+</div></code></pre>
+<p>查询-文档得分可用共同词项的对数词频之和：</p>
+<pre class="hljs"><code><div>score(q,d) = sum_{t in q ∩ d} (1 + log10 tf(t,d))
+</div></code></pre>
+<p>如果查询和文档没有公共词项，则得分为 0。</p>
+<h3 id="33-idf">3.3 IDF</h3>
+<p>来源：<code>lecture6-tfidf.pdf</code> pp.27-34</p>
+<p>IDF 的动机：罕见词项比常见词项携带更多信息。</p>
+<ul>
+<li>罕见词如 <code>ARACHNOCENTRIC</code>，如果出现在文档中，文档很可能与查询相关。</li>
+<li>常见词如 <code>GOOD</code>, <code>INCREASE</code>, <code>LINE</code>，虽然包含它们的文档比不包含的更相关，但它们区分能力较弱。</li>
+</ul>
+<p>文档频率：</p>
+<pre class="hljs"><code><div>df(t) = 包含词项 t 的文档数
+</div></code></pre>
+<p>IDF：</p>
+<pre class="hljs"><code><div>idf(t) = log10(N / df(t))
+</div></code></pre>
+<p>其中 <code>N</code> 是文档集中文档总数。</p>
+<p>含义：</p>
+<ul>
+<li><code>df(t)</code> 越大，<code>idf(t)</code> 越小。</li>
+<li><code>df(t)</code> 越小，<code>idf(t)</code> 越大。</li>
+<li>IDF 是词项信息量的指标。</li>
+<li>实际中使用 <code>log(N / df)</code> 而不是直接使用 <code>N / df</code>，是为了抑制 IDF 的影响。</li>
+</ul>
+<p>课件样例中，当 <code>N = 1,000,000</code>：</p>
+<pre class="hljs"><code><div>calpurnia  df=1         idf=6
+animal     df=100       idf=4
+sunday     df=1,000     idf=3
+fly        df=10,000    idf=2
+under      df=100,000   idf=1
+the        df=1,000,000 idf=0
+</div></code></pre>
+<p>注意：</p>
+<ul>
+<li>IDF 会影响至少包含两个词项的查询的排序。</li>
+<li>单词项查询中，IDF 对文档间排序基本没有影响，因为所有匹配文档都包含同一个查询词。</li>
+<li>文档频率 <code>df</code> 比文档集频率 <code>cf</code> 更适合作权重计算。</li>
+</ul>
+<h3 id="34-tf-idf-%E6%9D%83%E9%87%8D%E8%AE%A1%E7%AE%97">3.4 TF-IDF 权重计算</h3>
+<p>来源：<code>lecture6-tfidf.pdf</code> pp.35-36</p>
+<p>TF-IDF 是信息检索中最经典的权重计算方法。</p>
+<p>定义：</p>
+<pre class="hljs"><code><div>tf-idf(t,d) = tf_weight(t,d) * idf(t)
+</div></code></pre>
+<p>采用对数词频时：</p>
+<pre class="hljs"><code><div>tf-idf(t,d) = (1 + log10 tf(t,d)) * log10(N / df(t))
+</div></code></pre>
+<p>若 <code>tf(t,d) = 0</code>，则 <code>tf-idf(t,d) = 0</code>。</p>
+<p>直观含义：</p>
+<ul>
+<li>词项在当前文档中出现越多，<code>tf</code> 越高，权重越大。</li>
+<li>词项在整个文档集中越罕见，<code>idf</code> 越高，权重越大。</li>
+<li>常见词即使出现，也会因为 <code>idf</code> 低而权重较小。</li>
+</ul>
+<p>注意：<code>tf-idf</code> 中的 <code>-</code> 是连接符，不是减号。其他写法包括 <code>tf.idf</code>、<code>tf x idf</code>。</p>
+<hr>
+<h2 id="4-%E6%A3%80%E7%B4%A2%E8%AF%84%E4%BB%B7%E6%91%98%E8%A6%81%E4%B8%8E%E6%8F%90%E9%AB%98%E5%8F%AC%E5%9B%9E%E7%8E%87">4. 检索评价、摘要与提高召回率</h2>
+<h3 id="41-ir-%E4%B8%AD%E8%AF%84%E4%BB%B7%E4%BB%80%E4%B9%88">4.1 IR 中评价什么</h3>
+<p>来源：<code>lecture8-evaluation(1).pdf</code> pp.9-13</p>
+<p>评估 IR 的目的：比较不同技术优劣，分析不同因素对系统的影响，促进检索系统改进。</p>
+<p>IR 系统目标：在较少消耗下，尽快、全面、准确地返回结果。</p>
+<p>评价内容：</p>
+<ol>
+<li>
+<p>效率（Efficiency）</p>
+<ul>
+<li>时间开销。</li>
+<li>空间开销。</li>
+<li>响应速度。</li>
+</ul>
+</li>
+<li>
+<p>效果（Effectiveness）</p>
+<ul>
+<li>返回的文档中有多少是相关文档。</li>
+<li>所有相关文档中返回了多少。</li>
+<li>相关文档是否排在靠前位置。</li>
+</ul>
+</li>
+<li>
+<p>其他指标</p>
+<ul>
+<li>覆盖率（Coverage）。</li>
+<li>访问量。</li>
+<li>数据更新速度。</li>
+<li>点击率、用户行为、A/B 测试等。</li>
+</ul>
+</li>
+</ol>
+<p>公平评测通常需要：</p>
+<ul>
+<li>相同的文档集合。</li>
+<li>相同的查询主题集合。</li>
+<li>相同的评价指标。</li>
+<li>比较不同检索系统的结果。</li>
+</ul>
+<h3 id="42-%E5%8F%AC%E5%9B%9E%E7%8E%87-recall">4.2 召回率 Recall</h3>
+<p>来源：<code>lecture8-evaluation(1).pdf</code> pp.17-19, pp.21-26；<code>lecture9-queryexpansion.pdf</code> p.3</p>
+<p>召回率又称查全率，衡量所有相关文档中有多少被系统返回。</p>
+<p>公式：</p>
+<pre class="hljs"><code><div>Recall = 正确检索出的相关文档数 / 全部相关文档数
+       = 正确检索出 / (正确检索出 + 未检索出)
+</div></code></pre>
+<p>取值范围：</p>
+<pre class="hljs"><code><div>R in [0, 1]
+</div></code></pre>
+<p>例：</p>
+<pre class="hljs"><code><div>某查询实际有 100 篇相关文档
+系统返回 200 篇，其中 80 篇真正相关
+
+Recall = 80 / 100 = 0.8
+</div></code></pre>
+<p>召回率高表示“该找出的相关文档找出了较多”。</p>
+<p>召回率的难点：</p>
+<ul>
+<li>大规模语料中，很难列举某个查询的全部相关文档。</li>
+<li>因此召回率难以准确计算。</li>
+<li>TREC 常用 Pooling 方法：把多个系统 Top N 结果汇成文档池，人工标注其中相关文档，近似作为相关文档集合。</li>
+</ul>
+<h3 id="43-%E6%AD%A3%E7%A1%AE%E7%8E%87-precision">4.3 正确率 Precision</h3>
+<p>来源：<code>lecture8-evaluation(1).pdf</code> pp.17-19, pp.21-25；<code>lecture9-queryexpansion.pdf</code> p.3</p>
+<p>正确率又称查准率，衡量返回结果中真正相关的比例。</p>
+<p>公式：</p>
+<pre class="hljs"><code><div>Precision = 正确检索出的相关文档数 / 检索出的全部文档数
+</div></code></pre>
+<p>取值范围：</p>
+<pre class="hljs"><code><div>P in [0, 1]
+</div></code></pre>
+<p>例：</p>
+<pre class="hljs"><code><div>某查询实际有 100 篇相关文档
+系统返回 200 篇，其中 80 篇真正相关
+
+Precision = 80 / 200 = 0.4
+</div></code></pre>
+<p>Precision 与 Recall 的关系：</p>
+<ul>
+<li>返回很少但非常确定的结果：Precision 可能高，Recall 可能低。</li>
+<li>返回全部文档：Recall = 1，但 Precision 通常很低。</li>
+<li>不同应用对二者侧重不同。</li>
+</ul>
+<p>例：</p>
+<ul>
+<li>垃圾邮件过滤更重视 Precision，避免把正常邮件误判成垃圾邮件。</li>
+<li>有些搜索场景用户希望结果全一点，更重视 Recall。</li>
+<li>有些搜索场景用户希望前几条很准，更重视 Precision。</li>
+</ul>
+<p>Precision 和 Recall 的不足：</p>
+<ul>
+<li>召回率难以计算。</li>
+<li>两个指标分别衡量系统不同方面，不容易单独判断哪个系统更好。</li>
+<li>它们基于无序集合，未考虑排序位置。</li>
+<li>若两个系统返回相同数量的相关文档，一个排在前 10，另一个排在最后 10，集合式 P/R 可能相同，但用户体验明显不同。</li>
+</ul>
+<p>补充指标：</p>
+<pre class="hljs"><code><div>F1 = 2PR / (P + R)
+</div></code></pre>
+<p>更一般的 <code>F_beta</code> 可调节 Precision 和 Recall 的相对重要性；<code>beta &gt; 1</code> 更重视 Recall，<code>beta &lt; 1</code> 更重视 Precision。</p>
+<h3 id="44-%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E6%91%98%E8%A6%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B">4.4 搜索结果摘要的基本类型</h3>
+<p>来源：<code>lecture8-evaluation(1).pdf</code> pp.49-56；<code>lecture9-queryexpansion.pdf</code> pp.4-5</p>
+<p>搜索结果通常以列表形式呈现，也就是常说的 “10 blue links”。每篇文档的描述很关键，因为用户常常根据标题、URL、元数据和摘要判断是否点击。</p>
+<p>摘要基本类型：</p>
+<ol>
+<li>静态摘要（static summary）</li>
+<li>动态摘要（dynamic summary）</li>
+</ol>
+<p>静态摘要：</p>
+<ul>
+<li>不随查询变化。</li>
+<li>对同一篇文档，无论输入什么查询，摘要都一样。</li>
+<li>最简单方法：返回文档前 50 个左右的单词。</li>
+<li>更复杂方法：从文档中选择重要句子组成摘要。</li>
+<li>也可使用 NLP 启发式或机器学习方法。</li>
+<li>最复杂方法是生成式摘要，但对多数 IR 应用来说不够成熟。</li>
+</ul>
+<p>动态摘要：</p>
+<ul>
+<li>依赖当前查询。</li>
+<li>试图解释“为什么这篇文档会被返回”。</li>
+<li>给出一个或多个包含查询词项的窗口（snippet）。</li>
+<li>出现完整查询短语的 snippet 优先。</li>
+<li>查询词项在小窗口中密集出现的 snippet 优先。</li>
+<li>最终把多个 snippet 显示为摘要。</li>
+</ul>
+<p>动态摘要生成条件：</p>
+<ul>
+<li>需要缓存文档内容。</li>
+<li>通过位置索引知道查询词项在文档中的出现位置。</li>
+<li>文档缓存版本可能过时。</li>
+<li>对非常长的文档，可只缓存短前缀。</li>
+</ul>
+<h3 id="45-%E6%8F%90%E9%AB%98%E5%8F%AC%E5%9B%9E%E7%8E%87%E7%9A%84%E6%96%B9%E6%B3%95">4.5 提高召回率的方法</h3>
+<p>来源：<code>lecture9-queryexpansion.pdf</code> pp.6, pp.8-13, pp.40-49</p>
+<p>提高召回率的核心思想：返回更多相关文档，即使这些文档不一定包含原查询词。</p>
+<p>例：</p>
+<pre class="hljs"><code><div>查询 q: aircraft
+某相关文档只包含 plane，不包含 aircraft
+简单 IR 系统不会返回该文档
+通过相关反馈或查询扩展，可以把 plane 关联进来
+</div></code></pre>
+<p>两类方法：</p>
+<ol>
+<li>
+<p>局部方法（local method）</p>
+<ul>
+<li>对当前用户查询进行即时分析。</li>
+<li>主要方法：相关反馈（relevance feedback）。</li>
+</ul>
+</li>
+<li>
+<p>全局方法（global method）</p>
+<ul>
+<li>对整个文档集或外部资源做一次性全局分析。</li>
+<li>主要方法：查询扩展（query expansion）。</li>
+</ul>
+</li>
+</ol>
+<p>相关反馈：</p>
+<ol>
+<li>用户提交一个简短查询。</li>
+<li>搜索引擎返回一组文档。</li>
+<li>用户标记部分文档相关、部分文档不相关。</li>
+<li>系统根据标记结果计算新的查询表示。</li>
+<li>系统用新查询再次检索。</li>
+<li>理想情况下，新结果有更高召回率。</li>
+</ol>
+<p>相关反馈分类：</p>
+<ul>
+<li>显式相关反馈：用户明确标记相关或不相关。</li>
+<li>隐式相关反馈：系统根据用户行为推测相关性，例如点击、停留时间。</li>
+<li>伪相关反馈 / 盲反馈：无用户参与，系统假设初始返回的前 k 篇文档相关，并据此扩展查询。</li>
+</ul>
+<p>查询扩展：</p>
+<ul>
+<li>在查询中加入同义词或相关词项，提高召回率。</li>
+<li>主要依赖同义词、近义词、查询日志等资源。</li>
+</ul>
+<p>查询扩展类型：</p>
+<ul>
+<li>人工构建的同义词/近义词词典，例如专业领域词表。</li>
+<li>自动导出的同义词/近义词词典，例如基于词语共现统计。</li>
+<li>基于查询日志挖掘出的查询等价类。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>通常能提高召回率。</li>
+<li>对专业搜索、科学工程领域搜索特别有用。</li>
+</ul>
+<p>风险：</p>
+<ul>
+<li>可能降低正确率。</li>
+<li>对有歧义的词尤其危险，例如 <code>jaguar</code> 可指动物也可指汽车品牌。</li>
+<li>人工词典维护成本高。</li>
+</ul>
+<hr>
+<h2 id="5-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9B%B8%E4%BC%BC%E5%BA%A6">5. 上下文相似度</h2>
+<h3 id="51-xml-%E6%A3%80%E7%B4%A2%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9B%B8%E4%BC%BC%E5%BA%A6">5.1 XML 检索中的上下文相似度</h3>
+<p>来源：<code>lecture10-xmlretrieval(1).pdf</code> pp.32-38</p>
+<p>课件中“上下文相似度”出现在 XML 检索部分，英文为 Context resemblance。</p>
+<p>XML 检索与普通非结构化检索的区别：</p>
+<ul>
+<li>普通向量空间模型中，每一维通常对应一个词项。</li>
+<li>XML 检索中，文档具有结构，词项所在路径也有意义。</li>
+<li>因此需要同时考虑词项和它在 XML 树中的位置。</li>
+</ul>
+<p>词汇化子树（lexicalized subtree）：</p>
+<ul>
+<li>把 XML 文档映射成包含词项和结构路径的子树。</li>
+<li>查询和文档都表示到这些词汇化子树构成的向量空间中。</li>
+<li>再使用向量相似度计算匹配程度。</li>
+</ul>
+<p>结构化词项（structural term）：</p>
+<pre class="hljs"><code><div>&lt;c, t&gt;
+</div></code></pre>
+<p>其中：</p>
+<ul>
+<li><code>c</code> 是 XML 上下文或路径。</li>
+<li><code>t</code> 是词项。</li>
+</ul>
+<p>如果每一维只用普通词项，会退化为标准向量空间模型，无法区分结构。例如 <code>title</code> 中的 Gates 与 <code>author</code> 中的 Gates。<br>
+如果每棵词汇化子树都作为一维，维度会过大。<br>
+折中方案：对所有最终以单个词项结束的路径建立索引，即对 XML 上下文/词项对建立索引。</p>
+<p>上下文相似度函数 <code>C_R</code>：</p>
+<ul>
+<li>用来度量查询路径 <code>c_q</code> 和文档路径 <code>c_d</code> 的相似程度。</li>
+<li><code>|c_q|</code> 和 <code>|c_d|</code> 分别表示查询路径和文档路径中的节点数。</li>
+<li>当且仅当可以通过插入额外节点把 <code>c_q</code> 转换成 <code>c_d</code> 时，二者可以匹配。</li>
+<li>完全相等时，<code>C_R(c_q, c_d) = 1.0</code>。</li>
+</ul>
+<p>课件例子：</p>
+<pre class="hljs"><code><div>C_R(c_q4, c_d2) = 3 / 4 = 0.75
+C_R(c_q4, c_d3) = 3 / 5 = 0.6
+</div></code></pre>
+<p>可答要点：</p>
+<ul>
+<li>上下文相似度衡量 XML 查询路径和文档路径的结构匹配程度。</li>
+<li>路径越接近，相似度越高。</li>
+<li>完全相同为 1。</li>
+<li>可通过插入节点匹配的路径才可比较。</li>
+</ul>
+<h3 id="52-%E5%B9%BF%E5%91%8A%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8C%B9%E9%85%8D">5.2 广告中的上下文匹配</h3>
+<p>来源：<code>lecture11-websearch(1).pdf</code> pp.16-18, p.29</p>
+<p>如果考试中的“上下文相似度”放在广告部分，也可能指网页内容触发广告的上下文匹配。</p>
+<p>互联网文本广告包括：</p>
+<ul>
+<li>搜索关键词触发的广告，也称搜索广告。</li>
+<li>网页内容触发的广告，也称上下文广告或内容匹配广告。</li>
+</ul>
+<p>上下文广告的核心：</p>
+<ul>
+<li>根据网页正文内容判断页面主题。</li>
+<li>将广告内容与页面主题匹配。</li>
+<li>广告与页面上下文越相关，越可能得到展示或点击。</li>
+</ul>
+<p>排序时不能只看出价，还要看相关性。课件指出广告排序应结合投标价格和相关性，点击率 CTR 是相关度的重要指标。</p>
+<hr>
+<h2 id="6-web-%E5%B9%BF%E5%91%8A%E4%B8%8E%E6%AC%A1%E9%AB%98%E4%BB%B7%E6%8B%8D%E5%8D%96">6. Web 广告与次高价拍卖</h2>
+<h3 id="61-%E4%BC%A0%E7%BB%9F%E5%B9%BF%E5%91%8A%E7%9A%84%E4%B8%8D%E8%B6%B3">6.1 传统广告的不足</h3>
+<p>来源：<code>lecture11-websearch(1).pdf</code> pp.11-14</p>
+<p>传统广告包括：</p>
+<ul>
+<li>品牌广告。</li>
+<li>直接营销。</li>
+</ul>
+<p>传统广告的不足：</p>
+<ul>
+<li>广告投放场地或媒介有限，例如报纸、电视、杂志、橱窗、公交、电梯等。</li>
+<li>广告场地费用高。</li>
+<li>很难个性化。</li>
+<li>投放效果很依赖广告商经验。</li>
+<li>投放效果难以量化。</li>
+</ul>
+<p>互联网广告的优点：</p>
+<ul>
+<li>机会更多。</li>
+<li>创意空间更大。</li>
+<li>可以个性化处理。</li>
+<li>每次点击成本较低。</li>
+<li>可量化度更高。</li>
+</ul>
+<h3 id="62-%E4%BA%92%E8%81%94%E7%BD%91%E5%B9%BF%E5%91%8A%E7%9A%84%E4%B8%BB%E8%A6%81%E5%BD%A2%E5%BC%8F">6.2 互联网广告的主要形式</h3>
+<p>来源：<code>lecture11-websearch(1).pdf</code> pp.15-18</p>
+<p>互联网广告主要形式：</p>
+<ol>
+<li>
+<p>图片广告</p>
+<ul>
+<li>以图片、横幅等形式展示。</li>
+</ul>
+</li>
+<li>
+<p>文本广告</p>
+<ul>
+<li>搜索关键词触发广告。</li>
+<li>网页内容触发广告。</li>
+</ul>
+</li>
+</ol>
+<p>互联网文本广告的两类：</p>
+<ol>
+<li>
+<p>搜索广告</p>
+<ul>
+<li>Sponsored Search driven Ad / Paid Ad。</li>
+<li>由搜索关键词触发。</li>
+<li>例如 Google Adwords。</li>
+</ul>
+</li>
+<li>
+<p>网页广告 / 内容匹配广告 / 上下文广告</p>
+<ul>
+<li>Web Page driven Ad / Contextual Ad。</li>
+<li>由网页内容触发。</li>
+<li>根据网页上下文选择广告。</li>
+</ul>
+</li>
+</ol>
+<h3 id="63-%E6%90%9C%E7%B4%A2%E5%B9%BF%E5%91%8A%E6%8E%92%E5%BA%8F">6.3 搜索广告排序</h3>
+<p>来源：<code>lecture11-websearch(1).pdf</code> pp.20-31</p>
+<p>第一代搜索广告：Goto 竞价排名。</p>
+<ul>
+<li>广告商对关键词出价。</li>
+<li>按投标价格排序。</li>
+<li>用户点击后广告商付费。</li>
+<li>问题：不区分广告和自然文档结果，没有相关度排序。</li>
+</ul>
+<p>第二代搜索广告：Google。</p>
+<ul>
+<li>严格区分自然搜索结果和搜索广告。</li>
+<li>广告排序不只看 bid，还考虑相关性。</li>
+</ul>
+<p>为什么不能只按出价排序：</p>
+<ul>
+<li>可能展示与查询无关的广告。</li>
+<li>用户体验差。</li>
+<li>无关广告点击率低。</li>
+<li>长期会损害搜索引擎整体收益。</li>
+</ul>
+<p>替代方法：</p>
+<pre class="hljs"><code><div>ad rank = bid * CTR
+</div></code></pre>
+<p>其中：</p>
+<ul>
+<li><code>bid</code>：广告商愿意为每次点击支付的最高价格。</li>
+<li><code>CTR</code>：clickthrough rate，点击率，等于 <code>clicks / impressions</code>。</li>
+<li><code>ad rank</code>：广告排名分数，平衡出价和相关度。</li>
+</ul>
+<p>其他排序因素还包括：</p>
+<ul>
+<li>广告位置。</li>
+<li>一天中的时间。</li>
+<li>着陆页质量。</li>
+<li>着陆页加载速度。</li>
+<li>查询本身。</li>
+</ul>
+<h3 id="64-%E6%AC%A1%E9%AB%98%E4%BB%B7%E6%8B%8D%E5%8D%96">6.4 次高价拍卖</h3>
+<p>来源：<code>lecture11-websearch(1).pdf</code> pp.26-32；<code>lecture12-crawling(1).pdf</code> pp.5-6</p>
+<p>次高价拍卖（second price auction）的基本原则：</p>
+<pre class="hljs"><code><div>出价最高者获得物品，但支付第二高出价。
+</div></code></pre>
+<p>课件解释：</p>
+<ul>
+<li>竞买人密封提交真实出价。</li>
+<li>拍卖开始后打开报价。</li>
+<li>最高出价者成交。</li>
+<li>实际支付价格是第二高价。</li>
+</ul>
+<p>为什么鼓励真实出价：</p>
+<ul>
+<li>出价影响能否赢得拍卖。</li>
+<li>一旦赢得拍卖，实际支付价格由第二高出价决定，而不是自己出价。</li>
+<li>因此竞买人更有动力报出自己的真实心理价位。</li>
+</ul>
+<p>搜索广告中的推广形式：广义次高价拍卖（GSP）思想。</p>
+<p>Google 课件机制：</p>
+<pre class="hljs"><code><div>ad rank = bid * CTR
+</div></code></pre>
+<p>广告商支付“维持当前排名所必须的价格”，通常由下一名广告的 <code>bid * CTR</code> 决定。</p>
+<p>若广告商 1 排在广告商 2 前面，则广告商 1 的支付价格满足：</p>
+<pre class="hljs"><code><div>paid_1 * CTR_1 = bid_2 * CTR_2
+paid_1 = bid_2 * CTR_2 / CTR_1
+</div></code></pre>
+<p>课件例子：</p>
+<pre class="hljs"><code><div>p1 = 3.00 * 0.03 / 0.06 = 1.50
+p2 = 1.00 * 0.08 / 0.03 = 2.67
+p3 = 4.00 * 0.01 / 0.08 = 0.50
+</div></code></pre>
+<p>考试可答：</p>
+<ul>
+<li>普通次高价拍卖：最高出价者胜出，支付第二高价。</li>
+<li>搜索广告中还要结合 CTR，因为广告位价值与点击概率有关。</li>
+<li>排名使用 <code>bid * CTR</code>，支付价格由下一名的排序分数除以自己的 CTR 得到。</li>
+</ul>
+<hr>
+<h2 id="7-%E9%AB%98%E9%A2%91%E8%80%83%E8%AF%95%E9%97%AE%E7%AD%94%E6%A8%A1%E6%9D%BF">7. 高频考试问答模板</h2>
+<h3 id="71-%E9%97%AE%E4%B8%BA%E4%BB%80%E4%B9%88%E5%80%92%E6%8E%92%E8%AE%B0%E5%BD%95%E8%A1%A8%E5%90%88%E5%B9%B6%E6%98%AF-oxy">7.1 问：为什么倒排记录表合并是 O(x+y)？</h3>
+<p>答：两个 postings list 都按 docID 升序排列，可以用双指针从头到尾扫描。每次比较当前 docID，较小者指针后移，相等则输出并两个指针都后移。每个元素最多访问一次，所以时间复杂度是两个表长之和 <code>O(x+y)</code>。</p>
+<h3 id="72-%E9%97%AE%E5%B8%83%E5%B0%94%E6%9F%A5%E8%AF%A2%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96">7.2 问：布尔查询如何优化？</h3>
+<p>答：对多个 <code>AND</code> 条件，优先处理 <code>df</code> 最小、postings list 最短的词项，使中间结果尽早变小。对含 <code>OR</code> 的一般表达式，可以用 OR 子表达式中各词项 <code>df</code> 之和估计结果大小，再按估计大小从小到大处理。</p>
+<h3 id="73-%E9%97%AEmapreduce-%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95">7.3 问：MapReduce 如何构建倒排索引？</h3>
+<p>答：Map 阶段读文档并输出 <code>&lt;term, docID&gt;</code>；Shuffle 阶段按 term 分组；Reduce 阶段收集同一 term 的全部 docID，排序、合并并写成 postings list。大规模场景下由 Master 分配 split 给 Parser，再由 Inverter 负责生成倒排记录表。</p>
+<h3 id="74-%E9%97%AE%E4%B8%BA%E4%BB%80%E4%B9%88-ir-%E4%B8%AD%E8%A6%81%E5%8E%8B%E7%BC%A9%E7%B4%A2%E5%BC%95">7.4 问：为什么 IR 中要压缩索引？</h3>
+<p>答：压缩可以减少磁盘空间，让更多索引进入内存，降低磁盘 I/O，加快从磁盘到内存的数据传输。只要解压足够快，读取压缩数据再解压通常比直接读取未压缩数据更快。</p>
+<h3 id="75-%E9%97%AEjaccardtfidftf-idf-%E5%88%86%E5%88%AB%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">7.5 问：Jaccard、tf、idf、tf-idf 分别解决什么问题？</h3>
+<p>答：Jaccard 衡量两个集合的重合度，但不考虑词频和词项稀有性。对数 tf 处理词项在文档中出现越多越重要但不线性增长的问题。IDF 处理罕见词信息量更高的问题。TF-IDF 把文档内词频和全局稀有性相乘，是经典权重计算方法。</p>
+<h3 id="76-%E9%97%AEprecision-%E5%92%8C-recall-%E7%9A%84%E5%8C%BA%E5%88%AB">7.6 问：Precision 和 Recall 的区别？</h3>
+<p>答：Precision 衡量返回结果中有多少是真的相关，公式是相关且返回 / 全部返回。Recall 衡量全部相关文档中有多少被返回，公式是相关且返回 / 全部相关。Precision 重在“准”，Recall 重在“全”。</p>
+<h3 id="77-%E9%97%AE%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E6%91%98%E8%A6%81%E6%9C%89%E5%93%AA%E4%BA%9B%E7%B1%BB%E5%9E%8B">7.7 问：搜索结果摘要有哪些类型？</h3>
+<p>答：两类：静态摘要和动态摘要。静态摘要与查询无关，常取文档前若干词或重要句子。动态摘要依赖查询，选取包含查询词项的窗口 snippet，优先显示包含完整短语或查询词密集出现的位置。</p>
+<h3 id="78-%E9%97%AE%E5%A6%82%E4%BD%95%E6%8F%90%E9%AB%98%E5%8F%AC%E5%9B%9E%E7%8E%87">7.8 问：如何提高召回率？</h3>
+<p>答：主要通过相关反馈和查询扩展。相关反馈根据用户标注的相关/不相关文档重构查询；查询扩展通过加入同义词、近义词或查询日志中相关表达来返回更多相关文档。它们通常能提高召回率，但可能降低正确率。</p>
+<h3 id="79-%E9%97%AE%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9B%B8%E4%BC%BC%E5%BA%A6">7.9 问：什么是上下文相似度？</h3>
+<p>答：在 XML 检索中，上下文相似度衡量查询路径和文档路径的结构相似程度。词项不仅看内容，还看它出现在 XML 树中的路径。路径完全相同时相似度为 1；路径越接近，相似度越高。</p>
+<h3 id="710-%E9%97%AE%E6%AC%A1%E9%AB%98%E4%BB%B7%E6%8B%8D%E5%8D%96%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%82%E5%90%88%E6%90%9C%E7%B4%A2%E5%B9%BF%E5%91%8A">7.10 问：次高价拍卖为什么适合搜索广告？</h3>
+<p>答：普通次高价拍卖中，最高出价者获胜但支付第二高价，这鼓励真实出价。搜索广告中还要考虑广告相关性，所以用 <code>ad rank = bid * CTR</code> 排序，并按维持当前排名所需的价格付费，即下一名排序分数除以自己的 CTR。</p>
+<pre class="hljs"><code><div>极简倒排索引实现
+def build_inverted_index(docs):
+index = {}
+for doc_id, text in docs:
+words = text.split()
+遍历单词，记录每个词在当前文档的位置
+word_pos = {}
+for pos, word in enumerate(words):
+if word not in word_pos:
+word_pos[word] = []
+word_pos[word].append(pos)
+写入倒排索引
+for word, pos_list in word_pos.items():
+count = len(pos_list)
+entry = (doc_id, count, pos_list)
+if word not in index:
+index[word] = []
+index[word].append(entry)
+return index
+</div></code></pre>
+
+</body>
+</html>
