@@ -1,379 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<title>机器学习复习资料_样例题精讲.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
+<meta charset="UTF-8">
+<title>机器学习复习资料_样例题精讲</title>
 <style>
-/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-	font-size: var(--vscode-markdown-font-size, 14px);
-	padding: 0 26px;
-	line-height: var(--vscode-markdown-line-height, 22px);
-	word-wrap: break-word;
-}
-
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
-
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
-
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
-
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
-
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left-width: 5px;
-	border-left-style: solid;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 1em;
-	line-height: 1.357em;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-pre code {
-	color: var(--vscode-editor-foreground);
-	tab-size: 4;
-}
-
-/** Theming */
-
-.vscode-light pre {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif; line-height: 1.7; max-width: 980px; margin: 0 auto; padding: 28px 34px; color: #222; }
+h1, h2, h3, h4 { line-height: 1.35; margin-top: 1.35em; }
+h1 { border-bottom: 2px solid #d8dee4; padding-bottom: .25em; }
+h2 { border-bottom: 1px solid #eaeef2; padding-bottom: .2em; }
+blockquote { margin: 1em 0; padding: .7em 1em; color: #4b5563; border-left: 4px solid #9ca3af; background: #f6f8fa; }
+code { font-family: Consolas, "SFMono-Regular", Menlo, monospace; background: #f6f8fa; padding: .12em .28em; border-radius: 4px; }
+pre { background: #f6f8fa; padding: 14px 16px; border-radius: 6px; overflow-x: auto; }
+pre code { background: transparent; padding: 0; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 14px; }
+th, td { border: 1px solid #d0d7de; padding: 6px 9px; vertical-align: top; }
+th { background: #f6f8fa; font-weight: 600; }
+hr { border: 0; border-top: 1px solid #d8dee4; margin: 2em 0; }
+li { margin: .25em 0; }
 </style>
-
-<style>
-/* Tomorrow Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-	color: #8e908c;
-}
-
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-	color: #c82829;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-	color: #f5871f;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-	color: #eab700;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-	color: #718c00;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-	color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #8959a8;
-}
-
-.hljs {
-	display: block;
-	overflow-x: auto;
-	color: #4d4d4c;
-	padding: 0.5em;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
-}
-
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
-
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
-
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.emoji {
-	height: 1.4em;
-}
-
-code {
-	font-size: 14px;
-	line-height: 19px;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
-</style>
-
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
-<h1 id="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99%E4%BB%A5%E6%A0%B7%E4%BE%8B%E9%A2%98%E4%B8%BA%E4%B8%AD%E5%BF%83">机器学习复习资料：以样例题为中心</h1>
+<h1>机器学习复习资料：以样例题和真题为中心</h1>
 <blockquote>
-<p>使用范围：以 <code>机器学习样例（含参考答案）.pdf</code> 为锚点，以 <code>ppt</code> 目录课件和 <code>机器学习要点(1).pdf</code> 为参考。已排除 <code>实验课指导手册</code>。</p>
+<p>使用范围：以 <code>机器学习样例（含参考答案）.pdf</code> 和 <code>真题/2024 年 7 月 9 日 A 卷</code> 为锚点，以 <code>ppt</code> 目录课件和 <code>机器学习要点(1).pdf</code> 为参考。已排除 <code>实验课指导手册</code>。</p>
 </blockquote>
-<h2 id="%E4%B8%80%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%AD%96%E7%95%A5">一、复习总策略</h2>
-<p>这门课的样例题非常有指向性：先考基础判断，再考“概念学习/候选消除算法”，再考“感知机”。因此复习顺序建议如下：</p>
+<h2>一、复习总策略</h2>
+<p>这门课的样例题和新增真题非常有指向性：先考基础判断，再考“概念学习/候选消除算法、感知机”，新增 2024 年 A 卷又把重点明显推向 <code>SVM + 朴素贝叶斯 + 决策树 + AdaBoost</code>。因此复习顺序建议如下：</p>
 <ol>
 <li>先把样例题的每一句答案背后的理由讲清楚。</li>
-<li>再把同类题可迁移的模板记住：定义题、算法过程题、公式题、收敛性题。</li>
+<li>再把新增真题的计算题模板练熟：SVM 间隔与合页损失、朴素贝叶斯平滑、ID3 信息增益、AdaBoost 两轮迭代。</li>
 <li>最后按 PPT 章节补齐：SVM、朴素贝叶斯、逻辑回归/Softmax、决策树、集成学习、KNN、神经网络。</li>
 </ol>
 <p>考试答题时最容易丢分的地方不是概念不会，而是：</p>
@@ -383,11 +38,12 @@ code {
 <li>写感知机损失函数时漏掉负号，或把 <code>b</code> 的更新写成 <code>w</code>；</li>
 <li>忘记线性不可分时感知机不收敛；</li>
 <li>把“朴素贝叶斯的条件独立假设”说成属性完全独立。</li>
+<li>把 ID3 信息增益、信息增益率、AdaBoost 权重更新只背概念，不会代入表格计算。</li>
 </ul>
-<hr>
-<h1 id="%E4%BA%8C%E6%A0%B7%E4%BE%8B%E9%A2%98%E7%B2%BE%E8%AE%B2">二、样例题精讲</h1>
-<h2 id="%E9%A2%98%E5%9E%8B%E4%B8%80%E5%88%A4%E6%96%AD%E9%A2%98">题型一：判断题</h2>
-<h3 id="1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE%E6%98%AF%E8%AE%AD%E7%BB%83%E6%A0%B7%E4%BE%8B%E5%92%8C%E6%B5%8B%E8%AF%95%E6%A0%B7%E4%BE%8B%E6%9D%A5%E8%87%AA%E5%90%8C%E4%B8%80%E4%B8%AA%E6%80%BB%E4%BD%93%E4%B8%94%E7%9B%B8%E4%BA%92%E7%8B%AC%E7%AB%8Bt">1. 机器学习问题的基本假设是：训练样例和测试样例来自同一个总体且相互独立。（T）</h3>
+<hr />
+<h1>二、样例题精讲</h1>
+<h2>题型一：判断题</h2>
+<h3>1. 机器学习问题的基本假设是：训练样例和测试样例来自同一个总体且相互独立。（T）</h3>
 <p>这是机器学习能泛化的基本前提，通常称为 i.i.d. 假设：独立同分布。训练集和测试集如果分布不同，训练得到的规律就未必适用于测试样例。</p>
 <p>答题关键词：</p>
 <ul>
@@ -395,7 +51,7 @@ code {
 <li>独立抽样；</li>
 <li>泛化能力依赖这个假设。</li>
 </ul>
-<h3 id="2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%AE%AD%E7%BB%83%E7%9B%AE%E6%A0%87%E6%98%AF%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E7%9A%84%E8%AF%AF%E5%B7%AEf">2. 机器学习的训练目标是尽量减少模型在训练集上的误差。（F）</h3>
+<h3>2. 机器学习的训练目标是尽量减少模型在训练集上的误差。（F）</h3>
 <p>错在“训练目标”被说窄了。训练误差当然要考虑，但机器学习真正关心的是对未见样本的泛化误差。只追求训练误差最小，可能导致过拟合。</p>
 <p>标准表述：</p>
 <ul>
@@ -403,14 +59,14 @@ code {
 <li>最终目标是获得好的泛化能力；</li>
 <li>训练误差过低不一定代表测试表现好。</li>
 </ul>
-<h3 id="3-%E4%BB%BB%E4%BD%95%E5%85%B7%E6%9C%89%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%99%A8%E9%83%BD%E6%98%AF%E6%9C%89%E5%81%8F%E7%9A%84t">3. 任何具有泛化能力的学习器都是有偏的。（T）</h3>
+<h3>3. 任何具有泛化能力的学习器都是有偏的。（T）</h3>
 <p>这里的“偏”不是贬义，而是“归纳偏置”。如果学习器没有任何预设偏好或限制，它只能记住训练样例，无法判断未见样本。</p>
 <p>样例题对应 PPT 考点：</p>
 <ul>
 <li>归纳学习需要预先假定，称为归纳偏置；</li>
 <li>有偏性越强，通常越能对未见实例做出确定分类，但表示能力可能受限。</li>
 </ul>
-<h3 id="4-%E5%BD%93%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E8%BE%83%E5%B0%91%E6%A8%A1%E5%9E%8B%E8%BF%87%E4%BA%8E%E5%A4%8D%E6%9D%82%E6%97%B6%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E6%9B%B4%E5%AE%B9%E6%98%93%E5%8F%91%E7%94%9F%E8%BF%87%E6%8B%9F%E5%90%88t">4. 当训练数据较少、模型过于复杂时，训练过程更容易发生过拟合。（T）</h3>
+<h3>4. 当训练数据较少、模型过于复杂时，训练过程更容易发生过拟合。（T）</h3>
 <p>样本少而模型复杂时，模型容易把训练数据中的偶然噪声也学进去。表现为训练误差低，但测试误差高。</p>
 <p>答题关键词：</p>
 <ul>
@@ -419,7 +75,7 @@ code {
 <li>训练集拟合过度；</li>
 <li>泛化能力下降。</li>
 </ul>
-<h3 id="5-%E5%9F%BA%E4%BA%8E%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E6%A0%B8%E5%BF%83%E6%98%AF%E5%9F%BA%E4%BA%8E%E6%B5%8B%E8%AF%95%E6%A0%B7%E4%BE%8B%E5%B1%80%E9%83%A8%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%AE%E6%A0%87%E9%80%BC%E8%BF%91%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%A8%E5%B1%80%E6%A0%B7%E4%BE%8B%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%AE%E6%A0%87%E9%80%BC%E8%BF%91t">5. 基于实例的学习算法的核心是基于测试样例局部空间的目标逼近，而不是全局样例空间的目标逼近。（T）</h3>
+<h3>5. 基于实例的学习算法的核心是基于测试样例局部空间的目标逼近，而不是全局样例空间的目标逼近。（T）</h3>
 <p>基于实例的学习，如 KNN，是“懒惰学习/消极学习”。训练时主要存储样例，预测时围绕当前查询样例寻找近邻，做局部估计。</p>
 <p>答题关键词：</p>
 <ul>
@@ -428,62 +84,62 @@ code {
 <li>查询时计算；</li>
 <li>KNN、距离度量、k 值选择。</li>
 </ul>
-<hr>
-<h2 id="%E9%A2%98%E5%9E%8B%E4%BA%8C%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%80%99%E9%80%89%E6%B6%88%E9%99%A4%E7%AE%97%E6%B3%95">题型二：概念学习与候选消除算法</h2>
+<hr />
+<h2>题型二：概念学习与候选消除算法</h2>
 <p>样例训练集如下，目标是学习 <code>EnjoySport</code>：</p>
 <table>
 <thead>
 <tr>
-<th>Example</th>
-<th>Sky</th>
-<th>AirTemp</th>
-<th>Humidity</th>
-<th>Wind</th>
-<th>Water</th>
-<th>Forecast</th>
-<th>EnjoySport</th>
+  <th>Example</th>
+  <th>Sky</th>
+  <th>AirTemp</th>
+  <th>Humidity</th>
+  <th>Wind</th>
+  <th>Water</th>
+  <th>Forecast</th>
+  <th>EnjoySport</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>Sunny</td>
-<td>Warm</td>
-<td>Normal</td>
-<td>Strong</td>
-<td>Warm</td>
-<td>Same</td>
-<td>Yes</td>
+  <td>1</td>
+  <td>Sunny</td>
+  <td>Warm</td>
+  <td>Normal</td>
+  <td>Strong</td>
+  <td>Warm</td>
+  <td>Same</td>
+  <td>Yes</td>
 </tr>
 <tr>
-<td>2</td>
-<td>Sunny</td>
-<td>Warm</td>
-<td>High</td>
-<td>Strong</td>
-<td>Warm</td>
-<td>Same</td>
-<td>Yes</td>
+  <td>2</td>
+  <td>Sunny</td>
+  <td>Warm</td>
+  <td>High</td>
+  <td>Strong</td>
+  <td>Warm</td>
+  <td>Same</td>
+  <td>Yes</td>
 </tr>
 <tr>
-<td>3</td>
-<td>Rainy</td>
-<td>Cold</td>
-<td>High</td>
-<td>Strong</td>
-<td>Warm</td>
-<td>Change</td>
-<td>No</td>
+  <td>3</td>
+  <td>Rainy</td>
+  <td>Cold</td>
+  <td>High</td>
+  <td>Strong</td>
+  <td>Warm</td>
+  <td>Change</td>
+  <td>No</td>
 </tr>
 <tr>
-<td>4</td>
-<td>Sunny</td>
-<td>Warm</td>
-<td>High</td>
-<td>Strong</td>
-<td>Cool</td>
-<td>Change</td>
-<td>Yes</td>
+  <td>4</td>
+  <td>Sunny</td>
+  <td>Warm</td>
+  <td>High</td>
+  <td>Strong</td>
+  <td>Cool</td>
+  <td>Change</td>
+  <td>Yes</td>
 </tr>
 </tbody>
 </table>
@@ -495,7 +151,7 @@ code {
 <li>明确属性值，如 <code>Sunny</code>：只接受该值；</li>
 <li><code>Ø</code>：不接受任何值，最特殊。</li>
 </ul>
-<h3 id="21-%E5%BD%92%E7%BA%B3%E5%81%8F%E7%BD%AE%E6%98%AF%E4%BB%80%E4%B9%88%E5%B1%9E%E4%BA%8E%E7%A9%BA%E9%97%B4%E5%81%8F%E7%BD%AE%E8%BF%98%E6%98%AF%E7%AE%97%E6%B3%95%E5%81%8F%E7%BD%AE">2.1 归纳偏置是什么？属于空间偏置还是算法偏置？</h3>
+<h3>2.1 归纳偏置是什么？属于空间偏置还是算法偏置？</h3>
 <p>样例答案：</p>
 <p>候选消除算法的归纳偏置是：目标假设可以用属性约束的合取表示。该偏置属于空间偏置，因为它限制了目标假设空间的表达范围。</p>
 <p>精讲：</p>
@@ -508,7 +164,7 @@ code {
 <blockquote>
 <p>候选消除算法预设目标概念属于假设空间 H，即可以由属性约束的合取式表示。这是对可搜索假设空间的限制，因此属于空间偏置/限定偏置，而不是搜索策略造成的算法偏置。</p>
 </blockquote>
-<h3 id="22-g-%E5%92%8C-s-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%80%BC%E6%98%AF%E4%BB%80%E4%B9%88%E5%A4%84%E7%90%86%E6%AF%8F%E4%B8%AA%E8%AE%AD%E7%BB%83%E6%A0%B7%E4%BE%8B%E5%90%8E%E5%A6%82%E4%BD%95%E6%BC%94%E5%8C%96">2.2 G 和 S 的初始值是什么？处理每个训练样例后如何演化？</h3>
+<h3>2.2 G 和 S 的初始值是什么？处理每个训练样例后如何演化？</h3>
 <p>初始边界：</p>
 <ul>
 <li><code>G0 = {&lt;?, ?, ?, ?, ?, ?&gt;}</code></li>
@@ -520,7 +176,7 @@ code {
 <li>遇到反例：G 要特殊化，使它排除反例；S 中覆盖反例的假设要删除。</li>
 </ul>
 <p>逐步演化：</p>
-<h4 id="%E5%A4%84%E7%90%86%E6%A0%B7%E4%BE%8B-1%E6%AD%A3%E4%BE%8B">处理样例 1：正例</h4>
+<h4>处理样例 1：正例</h4>
 <p>样例 1：</p>
 <p><code>&lt;Sunny, Warm, Normal, Strong, Warm, Same&gt; -&gt; Yes</code></p>
 <p>S 从最特殊假设一般化到刚好覆盖该正例：</p>
@@ -528,7 +184,7 @@ code {
 <li><code>S1 = {&lt;Sunny, Warm, Normal, Strong, Warm, Same&gt;}</code></li>
 <li><code>G1 = {&lt;?, ?, ?, ?, ?, ?&gt;}</code></li>
 </ul>
-<h4 id="%E5%A4%84%E7%90%86%E6%A0%B7%E4%BE%8B-2%E6%AD%A3%E4%BE%8B">处理样例 2：正例</h4>
+<h4>处理样例 2：正例</h4>
 <p>样例 2：</p>
 <p><code>&lt;Sunny, Warm, High, Strong, Warm, Same&gt; -&gt; Yes</code></p>
 <p>与 S1 比较，只有 Humidity 不同：</p>
@@ -541,7 +197,7 @@ code {
 <li><code>S2 = {&lt;Sunny, Warm, ?, Strong, Warm, Same&gt;}</code></li>
 <li><code>G2 = {&lt;?, ?, ?, ?, ?, ?&gt;}</code></li>
 </ul>
-<h4 id="%E5%A4%84%E7%90%86%E6%A0%B7%E4%BE%8B-3%E5%8F%8D%E4%BE%8B">处理样例 3：反例</h4>
+<h4>处理样例 3：反例</h4>
 <p>样例 3：</p>
 <p><code>&lt;Rainy, Cold, High, Strong, Warm, Change&gt; -&gt; No</code></p>
 <p>反例会被当前 <code>G2 = &lt;?, ?, ?, ?, ?, ?&gt;</code> 覆盖，所以需要特殊化 G，使其排除该反例，同时仍然比 S2 更一般。</p>
@@ -559,7 +215,7 @@ code {
 <li><code>G3 = {&lt;Sunny, ?, ?, ?, ?, ?&gt;, &lt;?, Warm, ?, ?, ?, ?&gt;, &lt;?, ?, ?, ?, ?, Same&gt;}</code></li>
 </ul>
 <p>注意：不能用 <code>Wind=Strong</code> 或 <code>Water=Warm</code> 来排除反例，因为反例在这些属性上和 S2 一样。</p>
-<h4 id="%E5%A4%84%E7%90%86%E6%A0%B7%E4%BE%8B-4%E6%AD%A3%E4%BE%8B">处理样例 4：正例</h4>
+<h4>处理样例 4：正例</h4>
 <p>样例 4：</p>
 <p><code>&lt;Sunny, Warm, High, Strong, Cool, Change&gt; -&gt; Yes</code></p>
 <p>先一般化 S3。S3 与样例 4 的不同处：</p>
@@ -586,7 +242,7 @@ code {
 <li><code>S = {&lt;Sunny, Warm, ?, Strong, ?, ?&gt;}</code></li>
 <li><code>G = {&lt;Sunny, ?, ?, ?, ?, ?&gt;, &lt;?, Warm, ?, ?, ?, ?&gt;}</code></li>
 </ul>
-<h3 id="23-%E6%9C%80%E5%90%8E%E7%94%9F%E6%88%90%E7%9A%84-version-space-%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%81%87%E8%AE%BE">2.3 最后生成的 Version Space 中有哪些假设？</h3>
+<h3>2.3 最后生成的 Version Space 中有哪些假设？</h3>
 <p>变型空间定义：</p>
 <p><code>VS(H,D) = {h in H | h 与训练集 D 一致}</code></p>
 <p>用 S 和 G 表示：</p>
@@ -611,51 +267,51 @@ code {
 <li>但不能放宽到完全没有 Sky 或 AirTemp 约束，否则会越过 G；</li>
 <li>最终必须满足“至少保留 Sky=Sunny 或 AirTemp=Warm”。</li>
 </ul>
-<h3 id="24-%E7%BB%99%E5%AE%9A%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%AE%AD%E7%BB%83%E9%9B%86%E6%97%B6%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E6%98%AF%E5%90%A6%E6%94%B6%E6%95%9B%E4%B8%BA%E4%BB%80%E4%B9%88">2.4 给定另一个训练集时，学习过程是否收敛？为什么？</h3>
+<h3>2.4 给定另一个训练集时，学习过程是否收敛？为什么？</h3>
 <p>训练集：</p>
 <table>
 <thead>
 <tr>
-<th>Example</th>
-<th>Sky</th>
-<th>AirTemp</th>
-<th>Humidity</th>
-<th>Wind</th>
-<th>Water</th>
-<th>Forecast</th>
-<th>EnjoySport</th>
+  <th>Example</th>
+  <th>Sky</th>
+  <th>AirTemp</th>
+  <th>Humidity</th>
+  <th>Wind</th>
+  <th>Water</th>
+  <th>Forecast</th>
+  <th>EnjoySport</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>Sunny</td>
-<td>Warm</td>
-<td>Normal</td>
-<td>Strong</td>
-<td>Cool</td>
-<td>Change</td>
-<td>Yes</td>
+  <td>1</td>
+  <td>Sunny</td>
+  <td>Warm</td>
+  <td>Normal</td>
+  <td>Strong</td>
+  <td>Cool</td>
+  <td>Change</td>
+  <td>Yes</td>
 </tr>
 <tr>
-<td>2</td>
-<td>Cloudy</td>
-<td>Warm</td>
-<td>Normal</td>
-<td>Strong</td>
-<td>Cool</td>
-<td>Change</td>
-<td>Yes</td>
+  <td>2</td>
+  <td>Cloudy</td>
+  <td>Warm</td>
+  <td>Normal</td>
+  <td>Strong</td>
+  <td>Cool</td>
+  <td>Change</td>
+  <td>Yes</td>
 </tr>
 <tr>
-<td>3</td>
-<td>Rainy</td>
-<td>Warm</td>
-<td>Normal</td>
-<td>Strong</td>
-<td>Cool</td>
-<td>Change</td>
-<td>No</td>
+  <td>3</td>
+  <td>Rainy</td>
+  <td>Warm</td>
+  <td>Normal</td>
+  <td>Strong</td>
+  <td>Cool</td>
+  <td>Change</td>
+  <td>No</td>
 </tr>
 </tbody>
 </table>
@@ -686,8 +342,8 @@ code {
 <blockquote>
 <p>不收敛。因为与训练集一致的目标概念需要表达属性取值的析取，如 Sky 为 Sunny 或 Cloudy，而候选消除算法的假设空间只包含属性约束的合取式，无法表达该目标概念。因此目标概念不属于 H，变型空间不能收敛到正确假设。</p>
 </blockquote>
-<hr>
-<h2 id="%E9%A2%98%E5%9E%8B%E4%B8%89%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%88%86%E7%B1%BB%E5%99%A8">题型三：感知机分类器</h2>
+<hr />
+<h2>题型三：感知机分类器</h2>
 <p>已知感知机分类超平面：</p>
 <p><code>f_theta(x) = w · x + b = 0</code></p>
 <p>其中：</p>
@@ -697,7 +353,7 @@ code {
 <li><code>x_i in R^n</code>；</li>
 <li><code>y_i in {+1, -1}</code>。</li>
 </ul>
-<h3 id="31-%E5%88%86%E7%B1%BB%E5%86%B3%E7%AD%96%E5%87%BD%E6%95%B0%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E8%AF%AF%E5%88%86%E7%B1%BB">3.1 分类决策函数是什么？如何判断误分类？</h3>
+<h3>3.1 分类决策函数是什么？如何判断误分类？</h3>
 <p>分类决策函数：</p>
 <p><code>sign(f_theta(x)) = sign(w · x + b)</code></p>
 <p>误分类条件：</p>
@@ -713,7 +369,7 @@ code {
 <p>在算法更新中，很多教材会把边界点也作为需要处理的情况，写作：</p>
 <p><code>y_i f(x_i) &lt;= 0</code></p>
 <p>考试中若问“是否误分类”，按样例答案写 <code>&lt; 0</code>；若问“何时更新参数”，可写 <code>&lt;= 0</code>。</p>
-<h3 id="32-%E5%8E%9F%E5%A7%8B%E5%BD%A2%E5%BC%8F%E7%9A%84%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E4%B8%8E-gdsgd-%E6%9B%B4%E6%96%B0%E5%85%AC%E5%BC%8F">3.2 原始形式的目标函数与 GD/SGD 更新公式</h3>
+<h3>3.2 原始形式的目标函数与 GD/SGD 更新公式</h3>
 <p>感知机学习策略：最小化误分类点到分类超平面的总距离。常用经验损失写作：</p>
 <p><code>L(w,b) = - sum_{x_i in M} y_i (w · x_i + b)</code></p>
 <p>其中 <code>M</code> 是误分类样例集合。</p>
@@ -721,14 +377,14 @@ code {
 <p>因为误分类点满足：</p>
 <p><code>y_i(w · x_i + b) &lt; 0</code></p>
 <p>为了让损失非负，所以取负号。</p>
-<h4 id="%E6%95%B4%E4%BD%93%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-gd">整体梯度下降 GD</h4>
+<h4>整体梯度下降 GD</h4>
 <p>对误分类集合 M 一次性求和：</p>
 <p><code>grad_w L(w,b) = - sum_{x_i in M} y_i x_i</code></p>
 <p><code>grad_b L(w,b) = - sum_{x_i in M} y_i</code></p>
 <p>沿负梯度方向更新：</p>
 <p><code>w &lt;- w + eta sum_{x_i in M} y_i x_i</code></p>
 <p><code>b &lt;- b + eta sum_{x_i in M} y_i</code></p>
-<h4 id="%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-sgd">随机梯度下降 SGD</h4>
+<h4>随机梯度下降 SGD</h4>
 <p>每次取一个误分类样例 <code>&lt;x_i, y_i&gt;</code>：</p>
 <p><code>w &lt;- w + eta y_i x_i</code></p>
 <p><code>b &lt;- b + eta y_i</code></p>
@@ -739,7 +395,7 @@ code {
 <li><code>b</code> 的更新是加 <code>eta y_i</code>，不是更新到 <code>w</code>；</li>
 <li>GD 用误分类集合 M 求和，SGD 用单个误分类样例。</li>
 </ul>
-<h3 id="33-%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%AF%B9%E5%81%B6%E5%BD%A2%E5%BC%8F">3.3 感知机对偶形式</h3>
+<h3>3.3 感知机对偶形式</h3>
 <p>原始形式更新多次后，<code>w</code> 可以表示成训练样例的线性组合：</p>
 <p><code>w = sum_{j=1}^N alpha_j y_j x_j</code></p>
 <p>代入分类函数：</p>
@@ -756,7 +412,7 @@ code {
 <p><code>alpha_i &lt;- alpha_i + eta</code></p>
 <p><code>b &lt;- b + eta y_i</code></p>
 <p>有些教材把 <code>alpha_i</code> 定义为更新次数，此时更新写成 <code>alpha_i &lt;- alpha_i + 1</code>，再由 <code>w = sum alpha_i eta y_i x_i</code> 表示。考试按样例中 <code>alpha_i &lt;- alpha_i + eta</code> 的写法即可。</p>
-<h3 id="34-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E7%BA%BF%E6%80%A7%E4%B8%8D%E5%8F%AF%E5%88%86%E6%97%B6%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%98%AF%E5%90%A6%E6%94%B6%E6%95%9B">3.4 什么是线性可分？线性不可分时感知机是否收敛？</h3>
+<h3>3.4 什么是线性可分？线性不可分时感知机是否收敛？</h3>
 <p>线性可分：</p>
 <p>对于给定数据集 T，若存在超平面 S 能够把 T 中所有正例和负例正确划分到 S 的两侧，则称 T 线性可分。</p>
 <p>线性不可分时：</p>
@@ -767,24 +423,223 @@ code {
 <li>最终超平面依赖初始值、样例遍历顺序和学习率；</li>
 <li>单层感知机不能解决异或问题，因为异或线性不可分。</li>
 </ul>
-<hr>
-<h1 id="%E4%B8%89%E6%A0%B7%E4%BE%8B%E9%A2%98%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%BD%91%E7%BB%9C">三、样例题背后的核心知识网络</h1>
-<h2 id="1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%95%E8%A8%80">1. 机器学习引言</h2>
-<h3 id="%E5%BF%85%E8%83%8C%E6%A6%82%E5%BF%B5">必背概念</h3>
+<hr />
+<h1>三、2024 年 A 卷真题补充</h1>
+<p>新增真题的结构是：判断题 20 分，SVM 20 分，朴素贝叶斯 20 分，决策树 20 分，AdaBoost 20 分。它说明考试不只考定义，还会要求把公式写完整、按表格算一步或两步。</p>
+<h2>题型四：判断题新增高频点</h2>
+<table>
+<thead>
+<tr>
+  <th>真题判断点</th>
+  <th>建议答案</th>
+  <th>容易丢分处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>按训练样例是否有标注及标注比例，可分为有监督、半监督、无监督学习</td>
+  <td>T</td>
+  <td>半监督不是“无监督的一种”，它利用少量有标注和大量无标注样本</td>
+</tr>
+<tr>
+  <td>训练目标是否等同于训练集误差最小</td>
+  <td>看题干限定</td>
+  <td>若说“最终目标”应判错，最终目标是泛化；若只说“优化经验风险”才可说训练误差最小</td>
+</tr>
+<tr>
+  <td>任何机器学习器都是有偏的，但空间偏差优于算法偏差</td>
+  <td>F</td>
+  <td>前半句强调归纳偏置是必要的；错在“优于”，空间偏置和算法偏置只是来源不同，不能笼统比较优劣</td>
+</tr>
+<tr>
+  <td>ID3 是贪婪算法，不能保证全局最优树</td>
+  <td>T</td>
+  <td>每步选当前最优属性，不回溯搜索所有树</td>
+</tr>
+<tr>
+  <td>概念学习是有监督二分类问题</td>
+  <td>T</td>
+  <td>目标概念通常只有正例/反例</td>
+</tr>
+<tr>
+  <td>线性可分数据上感知机收敛</td>
+  <td>T</td>
+  <td>前提是线性可分，且学习率为正常正数</td>
+</tr>
+<tr>
+  <td>最大间隔分类器要求样例离分类超平面尽量远</td>
+  <td>T</td>
+  <td>更准确说是最大化最小几何间隔</td>
+</tr>
+<tr>
+  <td>SVM 支持向量位于间隔边界上或间隔内</td>
+  <td>T</td>
+  <td>硬间隔在线性约束边界上；软间隔还可能在间隔内或被错分</td>
+</tr>
+<tr>
+  <td>逻辑回归可用于分类</td>
+  <td>T</td>
+  <td>它回归的是正例概率/对数几率，不是连续数值标签</td>
+</tr>
+<tr>
+  <td>先验均匀时 MAP 等价于 ML</td>
+  <td>T</td>
+  <td>因为后验排序等价于“似然 × 先验”，均匀先验不影响排序</td>
+</tr>
+</tbody>
+</table>
+<p>判断题答题原则：看到“最终目标”“一定”“优于”“完全独立”要格外谨慎；看到“训练优化过程”“条件独立”“贪婪局部最优”通常是关键词。</p>
+<h2>题型五：SVM 必会题</h2>
+<h3>5.1 函数间隔与几何间隔</h3>
+<p>对超平面 <code>f(x)=w·x+b=0</code>，样本 <code>(x_i,y_i)</code> 的函数间隔为：</p>
+<p><code>hat_gamma_i = y_i(w·x_i+b)</code></p>
+<p>几何间隔为：</p>
+<p><code>gamma_i = y_i(w·x_i+b) / ||w||</code></p>
+<p>二者关系：</p>
+<p><code>gamma_i = hat_gamma_i / ||w||</code></p>
+<p>所以函数间隔会随 <code>w,b</code> 同比例缩放而变化，几何间隔才是真实距离。判断样本是否正确分类只看：</p>
+<p><code>y_i(w·x_i+b)&gt;0</code></p>
+<h3>5.2 合页损失与线性 SVM 目标函数</h3>
+<p>单个样本的合页损失：</p>
+<p><code>L_i = max(0, 1 - y_i(w·x_i+b))</code></p>
+<p>图像要点：</p>
+<ul>
+<li>当 <code>y_i f(x_i) &gt;= 1</code> 时，损失为 0；</li>
+<li>当 <code>0 &lt; y_i f(x_i) &lt; 1</code> 时，分类正确但间隔不足，仍有损失；</li>
+<li>当 <code>y_i f(x_i) &lt;= 0</code> 时，样本被错分，损失更大。</li>
+</ul>
+<p>软间隔线性 SVM 常写为：</p>
+<p><code>min 1/2||w||^2 + C Σ max(0, 1-y_i(w·x_i+b))</code></p>
+<p>也可写成含松弛变量形式：</p>
+<p><code>min 1/2||w||^2 + C Σ xi_i</code></p>
+<p>约束：</p>
+<p><code>y_i(w·x_i+b) &gt;= 1 - xi_i, xi_i &gt;= 0</code></p>
+<p>答题时一定要同时写出：损失项、正则项、平衡因子 <code>C</code>。只写“最小化损失”不够。</p>
+<h3>5.3 支持向量是什么</h3>
+<p>支持向量是决定最优分类超平面的训练样本。在线性硬间隔 SVM 中，它们满足：</p>
+<p><code>y_i(w·x_i+b)=1</code></p>
+<p>在软间隔 SVM 中，满足 <code>alpha_i&gt;0</code> 的样本是支持向量，通常位于间隔边界上、间隔内或被错分。非支持向量对分类边界没有直接决定作用。</p>
+<h2>题型六：朴素贝叶斯与 m-估计平滑</h2>
+<p>真题给的是经典 <code>PlayTennis</code> 数据表，要求说明 m-估计平滑并预测 <code>&lt;sunny, cool, high, strong&gt;</code> 一类样例。</p>
+<h3>6.1 朴素贝叶斯分类公式</h3>
+<p>对类别 <code>v_j</code>，预测规则为：</p>
+<p><code>v_MAP = argmax_v P(v) Π_i P(a_i|v)</code></p>
+<p>朴素性体现在：给定类别后，各属性条件独立。</p>
+<h3>6.2 m-估计平滑</h3>
+<p>当某个属性值在某类中没有出现时，直接用频率估计会得到 0，使整个后验概率乘积变成 0。m-估计用下面公式修正：</p>
+<p><code>P(a_i|v_j) = (n_c + m p) / (n + m)</code></p>
+<p>其中：</p>
+<ul>
+<li><code>n</code>：类别 <code>v_j</code> 下的样本总数；</li>
+<li><code>n_c</code>：类别 <code>v_j</code> 下属性取值为 <code>a_i</code> 的样本数；</li>
+<li><code>p</code>：该属性取值的先验概率，常用均匀先验；</li>
+<li><code>m</code>：等效样本量，控制平滑强度。</li>
+</ul>
+<p>若取均匀先验并令 <code>m</code> 等于该属性可能取值个数，就退化为常见的 Laplace 平滑。</p>
+<h3>6.3 计算题模板</h3>
+<ol>
+<li>先数类别先验：<code>P(Yes)</code>、<code>P(No)</code>。</li>
+<li>再分别在 Yes 类和 No 类中数每个属性取值的条件概率。</li>
+<li>对没出现的属性值使用 m-估计平滑，不能写 0。</li>
+<li>分别计算 <code>P(Yes)ΠP(a_i|Yes)</code> 和 <code>P(No)ΠP(a_i|No)</code>。</li>
+<li>哪个大就判为哪一类。</li>
+</ol>
+<p>这类题的得分点不在最后一个类别标签，而在“先验、条件概率、平滑公式、乘积比较”四步是否完整。</p>
+<h2>题型七：决策树 ID3 与信息增益</h2>
+<p>真题给出的“风雨操场”活动数据也是 <code>PlayTennis</code> 结构，属性为天气、温度、湿度、风速，类别为进行/取消。</p>
+<h3>7.1 信息增益</h3>
+<p>数据集 <code>D</code> 的熵：</p>
+<p><code>H(D) = -Σ_k p_k log2 p_k</code></p>
+<p>按属性 <code>A</code> 划分后的条件熵：</p>
+<p><code>H(D|A) = Σ_v |D_v|/|D| H(D_v)</code></p>
+<p>信息增益：</p>
+<p><code>Gain(D,A) = H(D) - H(D|A)</code></p>
+<p>信息增益越大，说明属性划分后类别越纯。</p>
+<h3>7.2 信息增益率</h3>
+<p>属性 <code>A</code> 的固有值：</p>
+<p><code>IV(A) = -Σ_v |D_v|/|D| log2(|D_v|/|D|)</code></p>
+<p>信息增益率：</p>
+<p><code>GainRatio(D,A) = Gain(D,A) / IV(A)</code></p>
+<p>它用来缓解信息增益偏好取值多的属性的问题。</p>
+<h3>7.3 真题表格对应的 ID3 树</h3>
+<p>按信息增益计算，根节点选“天气”。典型结果为：</p>
+<pre><code class="language-text">天气
+├─ 阴：进行
+├─ 晴：湿度
+│  ├─ 高：取消
+│  └─ 正常：进行
+└─ 雨：风速
+   ├─ 弱：进行
+   └─ 强：取消
+</code></pre>
+<p>这棵树要背下结构，同时要会解释为什么：</p>
+<ul>
+<li><code>天气=阴</code> 的样本全是“进行”，直接成为叶节点；</li>
+<li><code>天气=晴</code> 时，湿度能把高/正常分开；</li>
+<li><code>天气=雨</code> 时，风速能把弱/强分开。</li>
+</ul>
+<h3>7.4 决策树的归纳偏置</h3>
+<p>决策树偏好较短的树，ID3 还偏好信息增益大的属性靠近根节点。这是搜索策略带来的优选偏置，不是把假设空间直接限制成某一种固定形式的空间偏置。</p>
+<h2>题型八：AdaBoost 两轮迭代</h2>
+<p>真题给出 10 个样本、3 个离散属性，以及固定方向的决策树桩：</p>
+<p><code>g_theta(x)=1 若 x^(j)&gt;=v，否则 -1</code></p>
+<h3>8.1 权重更新公式</h3>
+<p>第 <code>m</code> 轮弱分类器错分率：</p>
+<p><code>e_m = Σ_i w_{m,i} I(g_m(x_i) != y_i)</code></p>
+<p>分类器权重：</p>
+<p><code>alpha_m = 1/2 ln((1-e_m)/e_m)</code></p>
+<p>样本权重更新：</p>
+<p><code>w_{m+1,i} = w_{m,i} exp(-alpha_m y_i g_m(x_i)) / Z_m</code></p>
+<p>其中 <code>Z_m</code> 是归一化因子，保证所有权重和为 1。</p>
+<p>记忆方法：</p>
+<ul>
+<li>分对的样本：<code>y_i g_m(x_i)=1</code>，权重乘 <code>exp(-alpha_m)</code>，变小；</li>
+<li>分错的样本：<code>y_i g_m(x_i)=-1</code>，权重乘 <code>exp(alpha_m)</code>，变大。</li>
+</ul>
+<h3>8.2 真题第一轮权重变化</h3>
+<p>若按题面常见做法只取表中出现的属性值作为候选阈值，第一轮可选到：</p>
+<p><code>g_1(x)=1 若 身体&gt;=1，否则 -1</code></p>
+<p>此时错分样本为 3、4、5、9，错分率：</p>
+<p><code>e_1 = 0.4</code></p>
+<p>分类器权重：</p>
+<p><code>alpha_1 = 1/2 ln(0.6/0.4) ≈ 0.203</code></p>
+<p>更新后：</p>
+<ul>
+<li>错分样本 3、4、5、9 权重升到 <code>0.125</code>；</li>
+<li>其余样本权重降到约 <code>0.0833</code>；</li>
+<li>第一轮后权重最大的样本是 3、4、5、9。</li>
+</ul>
+<p>如果允许阈值取任意实数，可能出现“全判为 -1”的多数类树桩，此时题目一般会通过候选阈值范围或课堂约定排除；考试时按老师给的候选阈值规则作答。</p>
+<h3>8.3 第二轮与集成学习器</h3>
+<p>在第一轮权重基础上继续选弱分类器。按表中候选阈值规则，第二轮可选到：</p>
+<p><code>g_2(x)=1 若 业务&gt;=3，否则 -1</code></p>
+<p>错分样本为 2、7、8、9，错分率：</p>
+<p><code>e_2 = 0.375</code></p>
+<p>分类器权重：</p>
+<p><code>alpha_2 = 1/2 ln(0.625/0.375) ≈ 0.255</code></p>
+<p>两轮后的集成分类器写为：</p>
+<p><code>G(x)=sign(alpha_1 g_1(x) + alpha_2 g_2(x))</code></p>
+<p>代入数值：</p>
+<p><code>G(x)=sign(0.203 g_1(x) + 0.255 g_2(x))</code></p>
+<p>AdaBoost 题最重要的是把“错分样本权重变大”讲清楚：下一轮弱学习器会更关注上一轮分错的样本，因此样本 9 这类连续难分样本权重会继续上升。</p>
+<hr />
+<h1>四、样例题背后的核心知识网络</h1>
+<h2>1. 机器学习引言</h2>
+<h3>必背概念</h3>
 <ul>
 <li>机器学习目标：从训练样例中学习规律，并对未见样例有良好泛化。</li>
 <li>基本假设：训练样例和测试样例独立同分布。</li>
 <li>过拟合：训练误差低，测试误差高。</li>
 <li>归纳偏置：学习器为了从有限样本推广到未见样本而作出的预先假设。</li>
 </ul>
-<h3 id="%E5%B8%B8%E8%A7%81%E9%97%AE%E6%B3%95">常见问法</h3>
+<h3>常见问法</h3>
 <p>问：训练误差越小越好吗？</p>
 <p>答：不一定。训练误差小可能意味着拟合充分，也可能意味着过拟合。机器学习最终关注泛化误差。</p>
 <p>问：为什么学习器必须有归纳偏置？</p>
 <p>答：因为训练样例有限，如果没有对目标概念形式或假设优先级的预设，学习器无法对未见样例做出分类。</p>
-<hr>
-<h2 id="2-%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0">2. 概念学习</h2>
-<h3 id="%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89">核心定义</h3>
+<hr />
+<h2>2. 概念学习</h2>
+<h3>核心定义</h3>
 <ul>
 <li>概念：对象或事件集合，也可看作布尔函数。</li>
 <li>概念学习：从正例和反例中推断布尔目标函数。</li>
@@ -792,7 +647,7 @@ code {
 <li>一致假设：对训练集中所有样例分类都正确的假设。</li>
 <li>变型空间：H 中所有与训练集一致的假设集合。</li>
 </ul>
-<h3 id="find-s">Find-S</h3>
+<h3>Find-S</h3>
 <p>特点：</p>
 <ul>
 <li>从最特殊假设开始；</li>
@@ -806,7 +661,7 @@ code {
 <li>对噪声敏感；</li>
 <li>无法表示所有一致假设。</li>
 </ul>
-<h3 id="%E5%80%99%E9%80%89%E6%B6%88%E9%99%A4%E7%AE%97%E6%B3%95">候选消除算法</h3>
+<h3>候选消除算法</h3>
 <p>维护两个边界：</p>
 <ul>
 <li>S：极大特殊边界；</li>
@@ -827,7 +682,7 @@ code {
 <li>样例有噪声/矛盾；</li>
 <li>或目标概念不在当前假设空间中。</li>
 </ul>
-<h3 id="%E5%BD%92%E7%BA%B3%E5%81%8F%E7%BD%AE%E6%AF%94%E8%BE%83">归纳偏置比较</h3>
+<h3>归纳偏置比较</h3>
 <p>候选消除算法：</p>
 <ul>
 <li>偏置来自假设空间 H 的表达能力；</li>
@@ -839,30 +694,30 @@ code {
 <li>偏好短树和信息增益高的属性靠近根节点；</li>
 <li>属于优选偏置。</li>
 </ul>
-<hr>
-<h2 id="3-%E6%84%9F%E7%9F%A5%E6%9C%BA">3. 感知机</h2>
-<h3 id="%E6%A8%A1%E5%9E%8B">模型</h3>
+<hr />
+<h2>3. 感知机</h2>
+<h3>模型</h3>
 <p><code>f(x) = sign(w · x + b)</code></p>
 <p>感知机是二分类线性分类模型。</p>
-<h3 id="%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0">损失函数</h3>
+<h3>损失函数</h3>
 <p><code>L(w,b) = - sum_{x_i in M} y_i(w · x_i + b)</code></p>
 <p>其中 M 是误分类样例集合。</p>
-<h3 id="%E5%8E%9F%E5%A7%8B%E5%BD%A2%E5%BC%8F%E6%9B%B4%E6%96%B0">原始形式更新</h3>
+<h3>原始形式更新</h3>
 <p>当 <code>y_i(w · x_i + b) &lt;= 0</code> 时：</p>
 <p><code>w &lt;- w + eta y_i x_i</code></p>
 <p><code>b &lt;- b + eta y_i</code></p>
-<h3 id="%E5%AF%B9%E5%81%B6%E5%BD%A2%E5%BC%8F">对偶形式</h3>
+<h3>对偶形式</h3>
 <p><code>w = sum alpha_i y_i x_i</code></p>
 <p><code>f(x) = sign(sum alpha_i y_i (x_i · x) + b)</code></p>
-<h3 id="%E6%94%B6%E6%95%9B%E6%80%A7">收敛性</h3>
+<h3>收敛性</h3>
 <ul>
 <li>线性可分：有限步收敛；</li>
 <li>线性不可分：不收敛；</li>
 <li>解不唯一，受初始值和样例顺序影响。</li>
 </ul>
-<hr>
-<h2 id="4-%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-svm">4. 支持向量机 SVM</h2>
-<h3 id="%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</h3>
+<hr />
+<h2>4. 支持向量机 SVM</h2>
+<h3>核心思想</h3>
 <p>SVM 不仅要把正负例分开，还要使分类间隔最大。其本质是最大间隔分类器。</p>
 <p>类型：</p>
 <ul>
@@ -870,23 +725,23 @@ code {
 <li>线性 SVM：Soft Margin；</li>
 <li>非线性 SVM：Kernel Trick。</li>
 </ul>
-<h3 id="%E9%97%B4%E9%9A%94">间隔</h3>
+<h3>间隔</h3>
 <p>函数间隔：</p>
 <p><code>hat_gamma_i = y_i(w · x_i + b)</code></p>
 <p>几何间隔：</p>
 <p><code>gamma_i = y_i(w · x_i + b) / ||w||</code></p>
 <p>几何间隔不受参数等比例缩放影响，更适合用来定义最大间隔。</p>
-<h3 id="%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86-svm-%E5%8E%9F%E5%A7%8B%E9%97%AE%E9%A2%98">线性可分 SVM 原始问题</h3>
+<h3>线性可分 SVM 原始问题</h3>
 <p>在约束：</p>
 <p><code>y_i(w · x_i + b) &gt;= 1</code></p>
 <p>下最小化：</p>
 <p><code>1/2 ||w||^2</code></p>
 <p>等价于最大化几何间隔。</p>
-<h3 id="%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F">支持向量</h3>
+<h3>支持向量</h3>
 <p>支持向量是距离分类超平面最近的训练样例，满足：</p>
 <p><code>y_i(w · x_i + b) = 1</code></p>
 <p>分类超平面主要由支持向量决定。</p>
-<h3 id="%E6%A0%B8%E6%96%B9%E6%B3%95">核方法</h3>
+<h3>核方法</h3>
 <p>当样本在原空间线性不可分时，可通过核函数隐式映射到高维特征空间：</p>
 <p><code>K(x_i, x_j) = phi(x_i) · phi(x_j)</code></p>
 <p>常见核：</p>
@@ -895,41 +750,41 @@ code {
 <li>多项式核；</li>
 <li>高斯/RBF 核。</li>
 </ul>
-<h3 id="%E6%98%93%E8%80%83%E6%AF%94%E8%BE%83%E6%84%9F%E7%9F%A5%E6%9C%BA-vs-svm">易考比较：感知机 vs SVM</h3>
+<h3>易考比较：感知机 vs SVM</h3>
 <table>
 <thead>
 <tr>
-<th>项目</th>
-<th>感知机</th>
-<th>SVM</th>
+  <th>项目</th>
+  <th>感知机</th>
+  <th>SVM</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>目标</td>
-<td>找到能分开的超平面</td>
-<td>找到最大间隔超平面</td>
+  <td>目标</td>
+  <td>找到能分开的超平面</td>
+  <td>找到最大间隔超平面</td>
 </tr>
 <tr>
-<td>解</td>
-<td>可能多个</td>
-<td>线性可分时唯一最优解</td>
+  <td>解</td>
+  <td>可能多个</td>
+  <td>线性可分时唯一最优解</td>
 </tr>
 <tr>
-<td>泛化</td>
-<td>不一定最优</td>
-<td>通常更好</td>
+  <td>泛化</td>
+  <td>不一定最优</td>
+  <td>通常更好</td>
 </tr>
 <tr>
-<td>线性不可分</td>
-<td>原始算法不收敛</td>
-<td>可用软间隔</td>
+  <td>线性不可分</td>
+  <td>原始算法不收敛</td>
+  <td>可用软间隔</td>
 </tr>
 </tbody>
 </table>
-<hr>
-<h2 id="5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF">5. 朴素贝叶斯</h2>
-<h3 id="%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F">贝叶斯公式</h3>
+<hr />
+<h2>5. 朴素贝叶斯</h2>
+<h3>贝叶斯公式</h3>
 <p><code>P(h|D) = P(D|h)P(h) / P(D)</code></p>
 <p>其中：</p>
 <ul>
@@ -937,68 +792,68 @@ code {
 <li><code>P(D|h)</code>：似然；</li>
 <li><code>P(h|D)</code>：后验概率。</li>
 </ul>
-<h3 id="map-%E4%B8%8E-ml">MAP 与 ML</h3>
+<h3>MAP 与 ML</h3>
 <p>极大后验假设：</p>
 <p><code>h_MAP = argmax_h P(D|h)P(h)</code></p>
 <p>若所有假设先验相同，则：</p>
 <p><code>h_ML = argmax_h P(D|h)</code></p>
 <p>也就是极大似然。</p>
-<h3 id="%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8">朴素贝叶斯分类器</h3>
+<h3>朴素贝叶斯分类器</h3>
 <p>分类目标：</p>
 <p><code>v_NB = argmax_v P(v) product_i P(a_i|v)</code></p>
 <p>关键假设：</p>
 <p>在给定类别 v 的条件下，各属性条件独立。</p>
 <p>注意：不是说属性无条件独立，而是“给定类别后条件独立”。</p>
-<h3 id="%E5%B9%B3%E6%BB%91">平滑</h3>
+<h3>平滑</h3>
 <p>如果某个条件概率为 0，会导致整个乘积为 0。常用平滑方法：</p>
 <p><code>P = (n_c + m p) / (n + m)</code></p>
 <p>文本分类中常见拉普拉斯平滑：</p>
 <p><code>P(w_k|v_j) = (n_k + 1) / (n + |Vocabulary|)</code></p>
-<h3 id="%E7%AD%94%E9%A2%98%E6%A8%A1%E6%9D%BF">答题模板</h3>
+<h3>答题模板</h3>
 <p>朴素贝叶斯适合数据维度高、特征较多的问题，如文本分类。即使条件独立假设不完全成立，实践中仍常有较好效果。</p>
-<hr>
-<h2 id="6-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E4%B8%8E-softmax">6. 逻辑回归与 Softmax</h2>
-<h3 id="%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92">逻辑回归</h3>
+<hr />
+<h2>6. 逻辑回归与 Softmax</h2>
+<h3>逻辑回归</h3>
 <p>逻辑回归是有监督二分类模型，建模条件概率：</p>
 <p><code>P(y=1|x) = 1 / (1 + exp(-(w · x + b)))</code></p>
 <p>判别函数：</p>
 <p><code>log(P(y=1|x) / P(y=0|x)) = w · x + b</code></p>
 <p>因此逻辑回归是对数线性模型。</p>
-<h3 id="%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87">学习目标</h3>
+<h3>学习目标</h3>
 <p>通常通过最大化对数似然，或等价地最小化交叉熵损失来学习参数。</p>
-<h3 id="%E4%B8%8E%E6%84%9F%E7%9F%A5%E6%9C%BA%E5%8C%BA%E5%88%AB">与感知机区别</h3>
+<h3>与感知机区别</h3>
 <table>
 <thead>
 <tr>
-<th>项目</th>
-<th>感知机</th>
-<th>逻辑回归</th>
+  <th>项目</th>
+  <th>感知机</th>
+  <th>逻辑回归</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>输出</td>
-<td>类别符号</td>
-<td>类别概率</td>
+  <td>输出</td>
+  <td>类别符号</td>
+  <td>类别概率</td>
 </tr>
 <tr>
-<td>损失</td>
-<td>误分类点损失</td>
-<td>对数似然/交叉熵</td>
+  <td>损失</td>
+  <td>误分类点损失</td>
+  <td>对数似然/交叉熵</td>
 </tr>
 <tr>
-<td>可解释性</td>
-<td>线性超平面</td>
-<td>概率模型</td>
+  <td>可解释性</td>
+  <td>线性超平面</td>
+  <td>概率模型</td>
 </tr>
 <tr>
-<td>线性不可分</td>
-<td>不收敛</td>
-<td>可优化概率损失</td>
+  <td>线性不可分</td>
+  <td>不收敛</td>
+  <td>可优化概率损失</td>
 </tr>
 </tbody>
 </table>
-<h3 id="softmax">Softmax</h3>
+<h3>Softmax</h3>
 <p>Softmax 是逻辑回归的多分类推广：</p>
 <p><code>P(y=k|x) = exp(w_k · x) / sum_j exp(w_j · x)</code></p>
 <p>特点：</p>
@@ -1007,9 +862,9 @@ code {
 <li>多个类别互斥；</li>
 <li>常与交叉熵损失配合。</li>
 </ul>
-<hr>
-<h2 id="7-%E5%86%B3%E7%AD%96%E6%A0%91">7. 决策树</h2>
-<h3 id="%E8%A1%A8%E7%A4%BA">表示</h3>
+<hr />
+<h2>7. 决策树</h2>
+<h3>表示</h3>
 <p>决策树通过从根节点到叶节点的路径分类实例：</p>
 <ul>
 <li>内部节点：属性测试；</li>
@@ -1017,7 +872,7 @@ code {
 <li>叶节点：类别。</li>
 </ul>
 <p>一条路径对应属性约束的合取，整棵树对应这些合取的析取。</p>
-<h3 id="id3-%E7%AE%97%E6%B3%95">ID3 算法</h3>
+<h3>ID3 算法</h3>
 <p>核心思想：</p>
 <p>自顶向下，贪心选择当前分类能力最强的属性。</p>
 <p>停止情况：</p>
@@ -1027,39 +882,39 @@ code {
 <li>属性用尽，则返回多数类；</li>
 <li>某分支样例为空，则返回当前样例中的多数类。</li>
 </ul>
-<h3 id="%E7%86%B5">熵</h3>
+<h3>熵</h3>
 <p>熵衡量不确定性：</p>
 <p><code>H(D) = - sum_k p_k log p_k</code></p>
 <p>熵越大，不确定性越大；熵越小，样本越纯。</p>
-<h3 id="%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A">信息增益</h3>
+<h3>信息增益</h3>
 <p><code>Gain(D,A) = H(D) - H(D|A)</code></p>
 <p>ID3 选择信息增益最大的属性。</p>
-<h3 id="%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%AF%94">信息增益比</h3>
+<h3>信息增益比</h3>
 <p>信息增益偏向取值多的属性。C4.5 使用信息增益比：</p>
 <p><code>GainRatio(D,A) = Gain(D,A) / SplitInfo(D,A)</code></p>
-<h3 id="%E8%BF%87%E6%8B%9F%E5%90%88%E4%B8%8E%E5%89%AA%E6%9E%9D">过拟合与剪枝</h3>
+<h3>过拟合与剪枝</h3>
 <p>决策树容易过拟合。剪枝用于提升泛化能力：</p>
 <ul>
 <li>预剪枝：提前停止树增长；</li>
 <li>后剪枝：先生成完整树，再删除不必要分支。</li>
 </ul>
-<h3 id="%E5%BD%92%E7%BA%B3%E5%81%8F%E7%BD%AE">归纳偏置</h3>
+<h3>归纳偏置</h3>
 <p>ID3 偏好：</p>
 <ul>
 <li>较短的树；</li>
 <li>信息增益高的属性更靠近根节点。</li>
 </ul>
 <p>这是优选偏置，不是空间偏置。</p>
-<hr>
-<h2 id="8-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0">8. 集成学习</h2>
-<h3 id="%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</h3>
+<hr />
+<h2>8. 集成学习</h2>
+<h3>核心思想</h3>
 <p>集成学习把多个弱学习器组合成强学习器，可用于分类和回归。</p>
 <p>两大类型：</p>
 <ul>
 <li>Bagging：多个学习器独立训练后组合；</li>
 <li>Boosting：多个学习器依次训练，后一个关注前一个分错的样例。</li>
 </ul>
-<h3 id="bagging">Bagging</h3>
+<h3>Bagging</h3>
 <p>步骤：</p>
 <ol>
 <li>对原始训练集进行 Bootstrap 抽样；</li>
@@ -1073,7 +928,7 @@ code {
 <li>提升稳定性；</li>
 <li>适合不稳定学习器，如决策树。</li>
 </ul>
-<h3 id="boosting">Boosting</h3>
+<h3>Boosting</h3>
 <p>思想：</p>
 <ul>
 <li>分错的样例权重增加；</li>
@@ -1081,7 +936,7 @@ code {
 <li>后续学习器更关注难分类样例；</li>
 <li>最终分类器是基分类器的加权组合。</li>
 </ul>
-<h3 id="adaboost">AdaBoost</h3>
+<h3>AdaBoost</h3>
 <p>基本结构：</p>
 <p><code>G(x) = sign(sum_m alpha_m G_m(x))</code></p>
 <p>其中：</p>
@@ -1092,9 +947,9 @@ code {
 </ul>
 <p>解释：</p>
 <p>AdaBoost 可看作加法模型，损失函数为指数损失，学习算法为前向分步算法。</p>
-<hr>
-<h2 id="9-%E5%9F%BA%E4%BA%8E%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%AD%A6%E4%B9%A0%E4%B8%8E-knn">9. 基于实例的学习与 KNN</h2>
-<h3 id="%E5%9F%BA%E4%BA%8E%E5%AE%9E%E4%BE%8B%E5%AD%A6%E4%B9%A0">基于实例学习</h3>
+<hr />
+<h2>9. 基于实例的学习与 KNN</h2>
+<h3>基于实例学习</h3>
 <p>训练时主要存储样例，分类时再寻找相似样例进行局部估计。因此又叫消极学习/懒惰学习。</p>
 <p>优点：</p>
 <ul>
@@ -1107,20 +962,20 @@ code {
 <li>对距离度量敏感；</li>
 <li>无关属性会干扰相似性判断。</li>
 </ul>
-<h3 id="knn-%E4%B8%89%E8%A6%81%E7%B4%A0">KNN 三要素</h3>
+<h3>KNN 三要素</h3>
 <ol>
 <li>距离度量；</li>
 <li>k 值选择；</li>
 <li>分类/回归决策规则。</li>
 </ol>
-<h3 id="%E8%B7%9D%E7%A6%BB">距离</h3>
+<h3>距离</h3>
 <p>欧氏距离：</p>
 <p><code>d(x,y) = sqrt(sum_i (x_i - y_i)^2)</code></p>
 <p>曼哈顿距离：</p>
 <p><code>d(x,y) = sum_i |x_i - y_i|</code></p>
 <p>一般 Lp 距离：</p>
 <p><code>d_p(x,y) = (sum_i |x_i-y_i|^p)^(1/p)</code></p>
-<h3 id="k-%E5%80%BC%E5%BD%B1%E5%93%8D">k 值影响</h3>
+<h3>k 值影响</h3>
 <p>k 小：</p>
 <ul>
 <li>模型复杂；</li>
@@ -1135,27 +990,27 @@ code {
 <li>近似误差大；</li>
 <li>可能欠拟合。</li>
 </ul>
-<h3 id="%E5%86%B3%E7%AD%96%E8%A7%84%E5%88%99">决策规则</h3>
+<h3>决策规则</h3>
 <p>分类：多数投票。</p>
 <p>回归：近邻目标值平均。</p>
 <p>距离加权：距离越近权重越大。</p>
-<h3 id="kd-tree">kd-tree</h3>
+<h3>kd-tree</h3>
 <p>用于提高多维近邻检索效率，核心是递归划分 k 维空间。</p>
-<hr>
-<h2 id="10-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80">10. 神经网络与深度学习基础</h2>
-<h3 id="%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E5%85%83">人工神经元</h3>
+<hr />
+<h2>10. 神经网络与深度学习基础</h2>
+<h3>人工神经元</h3>
 <p>神经元的基本形式：</p>
 <p><code>z = w · x + b</code></p>
 <p><code>a = sigma(z)</code></p>
 <p>其中 <code>sigma</code> 是激活函数。</p>
-<h3 id="%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">前馈神经网络</h3>
+<h3>前馈神经网络</h3>
 <p>特点：</p>
 <ul>
 <li>神经元分层；</li>
 <li>信号从输入层到输出层单向传播；</li>
 <li>网络结构是有向无环图。</li>
 </ul>
-<h3 id="%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0">激活函数</h3>
+<h3>激活函数</h3>
 <p>作用：</p>
 <ul>
 <li>引入非线性；</li>
@@ -1167,7 +1022,7 @@ code {
 <li>Tanh；</li>
 <li>ReLU。</li>
 </ul>
-<h3 id="%E8%BE%93%E5%87%BA%E5%B1%82">输出层</h3>
+<h3>输出层</h3>
 <p>输出层可接：</p>
 <ul>
 <li>线性回归；</li>
@@ -1175,14 +1030,14 @@ code {
 <li>Softmax；</li>
 <li>SVM 等。</li>
 </ul>
-<h3 id="%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD-bp">反向传播 BP</h3>
+<h3>反向传播 BP</h3>
 <p>训练过程三步：</p>
 <ol>
 <li>前馈计算每一层状态和激活值；</li>
 <li>反向传播计算每一层误差项；</li>
 <li>根据梯度更新参数。</li>
 </ol>
-<h3 id="%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%9A%BE%E7%82%B9">深度学习难点</h3>
+<h3>深度学习难点</h3>
 <ul>
 <li>参数多，容易过拟合；</li>
 <li>非凸优化，可能陷入局部最优；</li>
@@ -1190,104 +1045,104 @@ code {
 <li>需要大量数据和算力；</li>
 <li>模型可解释性弱。</li>
 </ul>
-<hr>
-<h1 id="%E5%9B%9B%E5%B8%B8%E7%94%A8%E7%AD%94%E9%A2%98%E6%A8%A1%E6%9D%BF">四、常用答题模板</h1>
-<h2 id="1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BD%92%E7%BA%B3%E5%81%8F%E7%BD%AE">1. “什么是归纳偏置？”</h2>
+<hr />
+<h1>五、常用答题模板</h1>
+<h2>1. “什么是归纳偏置？”</h2>
 <p>归纳偏置是学习器为了从有限训练样例推广到未见样例而作出的预先假定。没有归纳偏置，学习器无法对训练集中未出现的样例做出有效判断。</p>
-<h2 id="2-%E5%80%99%E9%80%89%E6%B6%88%E9%99%A4%E7%AE%97%E6%B3%95%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E8%83%BD%E4%B8%8D%E6%94%B6%E6%95%9B">2. “候选消除算法为什么可能不收敛？”</h2>
+<h2>2. “候选消除算法为什么可能不收敛？”</h2>
 <p>候选消除算法收敛要求训练样例无噪声，且目标概念能由假设空间 H 表示。若样例矛盾，或目标概念不属于 H，例如需要析取表达而 H 只允许合取表达，则算法不能收敛到正确假设，甚至可能得到空变型空间。</p>
-<h2 id="3-%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E6%80%A7%E4%B8%8D%E5%8F%AF%E5%88%86%E6%97%B6%E4%B8%8D%E6%94%B6%E6%95%9B">3. “感知机为什么线性不可分时不收敛？”</h2>
+<h2>3. “感知机为什么线性不可分时不收敛？”</h2>
 <p>感知机通过不断修正误分类点来寻找一个能完全分开正负例的超平面。如果数据线性不可分，这样的超平面不存在，因此算法会持续遇到误分类点并不断更新参数，不能有限步收敛。</p>
-<h2 id="4-svm-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B%E8%BE%83%E5%A5%BD">4. “SVM 为什么泛化能力较好？”</h2>
+<h2>4. “SVM 为什么泛化能力较好？”</h2>
 <p>SVM 不仅要求分类正确，还要求分类间隔最大。最大间隔使分类边界对训练样本扰动更不敏感，因此通常具有较好的泛化能力。</p>
-<h2 id="5-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%9C%B4%E7%B4%A0%E5%9C%A8%E5%93%AA%E9%87%8C">5. “朴素贝叶斯朴素在哪里？”</h2>
+<h2>5. “朴素贝叶斯朴素在哪里？”</h2>
 <p>朴素贝叶斯的“朴素”体现在条件独立假设：给定类别后，各属性之间相互独立。该假设大幅减少了需要估计的概率数量。</p>
-<h2 id="6-id3-%E7%9A%84%E5%BD%92%E7%BA%B3%E5%81%8F%E7%BD%AE%E6%98%AF%E4%BB%80%E4%B9%88">6. “ID3 的归纳偏置是什么？”</h2>
+<h2>6. “ID3 的归纳偏置是什么？”</h2>
 <p>ID3 偏好较短的树，并偏好信息增益高的属性靠近根节点。这种偏置来自搜索策略，是优选偏置。</p>
-<h2 id="7-bagging-%E5%92%8C-boosting-%E7%9A%84%E5%8C%BA%E5%88%AB">7. “Bagging 和 Boosting 的区别？”</h2>
+<h2>7. “Bagging 和 Boosting 的区别？”</h2>
 <p>Bagging 通过 Bootstrap 抽样独立训练多个学习器，再投票或平均，主要降低方差；Boosting 按顺序训练多个学习器，后续学习器关注前面分错的样例，最终加权组合，通常降低偏差并提升分类能力。</p>
-<hr>
-<h1 id="%E4%BA%94%E8%80%83%E5%89%8D%E9%80%9F%E6%9F%A5%E8%A1%A8">五、考前速查表</h1>
+<hr />
+<h1>六、考前速查表</h1>
 <table>
 <thead>
 <tr>
-<th>章节</th>
-<th>必会关键词</th>
-<th>必会公式/算法</th>
-<th>高频问法</th>
+  <th>章节</th>
+  <th>必会关键词</th>
+  <th>必会公式/算法</th>
+  <th>高频问法</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>引言</td>
-<td>泛化、过拟合、i.i.d.、归纳偏置</td>
-<td>训练误差 vs 泛化误差</td>
-<td>判断题、概念题</td>
+  <td>引言</td>
+  <td>泛化、过拟合、i.i.d.、归纳偏置</td>
+  <td>训练误差 vs 泛化误差</td>
+  <td>判断题、概念题</td>
 </tr>
 <tr>
-<td>概念学习</td>
-<td>假设空间、变型空间、S/G 边界</td>
-<td>候选消除算法</td>
-<td>给表格推 S/G</td>
+  <td>概念学习</td>
+  <td>假设空间、变型空间、S/G 边界</td>
+  <td>候选消除算法</td>
+  <td>给表格推 S/G</td>
 </tr>
 <tr>
-<td>感知机</td>
-<td>线性分类、误分类、收敛性</td>
-<td><code>w&lt;-w+eta yx</code>, <code>b&lt;-b+eta y</code></td>
-<td>原始/对偶形式</td>
+  <td>感知机</td>
+  <td>线性分类、误分类、收敛性</td>
+  <td><code>w&lt;-w+eta yx</code>, <code>b&lt;-b+eta y</code></td>
+  <td>原始/对偶形式</td>
 </tr>
 <tr>
-<td>SVM</td>
-<td>最大间隔、支持向量、核方法</td>
-<td><code>min 1/2||w||^2</code></td>
-<td>与感知机比较</td>
+  <td>SVM</td>
+  <td>函数间隔、几何间隔、支持向量、合页损失</td>
+  <td><code>max(0,1-yf(x))</code>, <code>min 1/2 norm(w)^2+CΣloss</code></td>
+  <td>间隔关系、画合页损失、写优化目标</td>
 </tr>
 <tr>
-<td>朴素贝叶斯</td>
-<td>先验、似然、后验、条件独立</td>
-<td><code>argmax P(v)ΠP(ai|v)</code></td>
-<td>MAP/ML、平滑</td>
+  <td>朴素贝叶斯</td>
+  <td>先验、似然、后验、条件独立、m-估计</td>
+  <td><code>argmax P(v)ΠP(ai given v)</code>, <code>(nc+mp)/(n+m)</code></td>
+  <td>PlayTennis 表格预测、平滑</td>
 </tr>
 <tr>
-<td>逻辑回归</td>
-<td>Sigmoid、对数几率、交叉熵</td>
-<td><code>P=1/(1+e^-z)</code></td>
-<td>与感知机比较</td>
+  <td>逻辑回归</td>
+  <td>Sigmoid、对数几率、交叉熵</td>
+  <td><code>P=1/(1+e^-z)</code></td>
+  <td>与感知机比较</td>
 </tr>
 <tr>
-<td>Softmax</td>
-<td>多分类、概率输出</td>
-<td><code>exp(z_k)/Σexp(z_j)</code></td>
-<td>软分类/硬分类</td>
+  <td>Softmax</td>
+  <td>多分类、概率输出</td>
+  <td><code>exp(z_k)/Σexp(z_j)</code></td>
+  <td>软分类/硬分类</td>
 </tr>
 <tr>
-<td>决策树</td>
-<td>熵、信息增益、剪枝</td>
-<td><code>Gain=H(D)-H(D|A)</code></td>
-<td>ID3、归纳偏置</td>
+  <td>决策树</td>
+  <td>熵、信息增益、信息增益率、归纳偏置</td>
+  <td><code>Gain=H(D)-条件熵</code>, <code>GainRatio=Gain/IV</code></td>
+  <td>ID3 画树、天气-湿度-风速结构</td>
 </tr>
 <tr>
-<td>集成学习</td>
-<td>Bagging、Boosting、AdaBoost</td>
-<td>加权投票</td>
-<td>二者区别</td>
+  <td>集成学习</td>
+  <td>Bagging、Boosting、AdaBoost、样本权重</td>
+  <td><code>alpha=1/2 ln((1-e)/e)</code>, 权重归一化</td>
+  <td>两轮迭代、错分样本权重变大</td>
 </tr>
 <tr>
-<td>KNN</td>
-<td>局部逼近、距离、k 值</td>
-<td>Lp 距离、多数投票</td>
-<td>k 大小影响</td>
+  <td>KNN</td>
+  <td>局部逼近、距离、k 值</td>
+  <td>Lp 距离、多数投票</td>
+  <td>k 大小影响</td>
 </tr>
 <tr>
-<td>神经网络</td>
-<td>激活函数、BP、梯度消失</td>
-<td>前馈+反传</td>
-<td>深度学习难点</td>
+  <td>神经网络</td>
+  <td>激活函数、BP、梯度消失</td>
+  <td>前馈+反传</td>
+  <td>深度学习难点</td>
 </tr>
 </tbody>
 </table>
-<hr>
-<h1 id="%E5%85%AD%E6%9C%80%E5%90%8E%E8%83%8C%E8%AF%B5%E7%89%88">六、最后背诵版</h1>
+<hr />
+<h1>七、最后背诵版</h1>
 <ol>
 <li>机器学习最终目标是泛化，不是单纯训练误差最小。</li>
 <li>泛化依赖训练/测试独立同分布，也依赖归纳偏置。</li>
@@ -1297,8 +1152,11 @@ code {
 <li>感知机 SGD 更新：<code>w&lt;-w+eta yx</code>，<code>b&lt;-b+eta y</code>。</li>
 <li>感知机线性可分时收敛，线性不可分时不收敛。</li>
 <li>SVM 的本质是最大间隔，支持向量决定分类边界。</li>
-<li>朴素贝叶斯的核心是假设给定类别后属性条件独立。</li>
+<li>SVM 的几何间隔等于函数间隔除以 <code>||w||</code>，合页损失是 <code>max(0,1-yf(x))</code>。</li>
+<li>朴素贝叶斯的核心是假设给定类别后属性条件独立；遇到 0 概率要用 m-估计或 Laplace 平滑。</li>
 <li>ID3 用信息增益选属性，偏好短树和高信息增益属性靠近根节点。</li>
+<li>信息增益率等于信息增益除以固有值，可缓解取值多属性偏好。</li>
+<li>AdaBoost 分错样本权重变大，弱分类器权重为 <code>1/2 ln((1-e)/e)</code>。</li>
 <li>Bagging 独立训练再组合，Boosting 顺序训练并提高错分样例权重。</li>
 <li>KNN 是基于实例的局部逼近，k 小易过拟合，k 大易欠拟合。</li>
 <li>神经网络靠激活函数引入非线性，靠反向传播计算梯度并更新参数。</li>
